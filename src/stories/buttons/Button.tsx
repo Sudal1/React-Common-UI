@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
-import { colors } from 'lib/Colors'
+import { colors } from 'lib/colors'
 
 interface StyleProps {
   variant?: 'primary' | 'secondary' | 'ghost' | 'destructive'

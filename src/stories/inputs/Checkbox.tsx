@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { colors } from 'lib/Colors'
+import { colors } from 'lib/colors'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string

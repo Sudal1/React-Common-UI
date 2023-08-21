@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { colors } from 'lib/Colors'
+import { colors } from 'lib/colors'
 import Input, { type Props as InputProps } from './Input'
 
 interface Props extends InputProps {

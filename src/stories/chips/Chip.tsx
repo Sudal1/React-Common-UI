@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { colors } from 'lib/Colors'
+import { colors } from 'lib/colors'
 
 interface Props {
   isActive?: boolean
