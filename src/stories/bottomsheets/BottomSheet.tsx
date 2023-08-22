@@ -6,12 +6,14 @@ import { media } from 'lib/media'
 import { hover } from 'lib/styles'
 import Overlay from './Overlay'
 
+interface Item {
+  name: string
+  onClick(): void
+}
+
 interface Props {
   visible: boolean
-  items: {
-    name: string
-    onClick(): void
-  }[]
+  items: Item[]
   onClose(): void
 }
 
