@@ -1,3 +1,7 @@
+# React Common UI
+
+Repository of common UI components made with react & storybook
+
 ## Available Scripts
 
 In the project directory, you can run:
