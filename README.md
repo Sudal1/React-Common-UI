@@ -21,3 +21,5 @@ build react-app
 ### `npm run build-storybook`
 
 build storybook
+
+> The basic structure of components is diverted from [Storybook Get started](https://storybook.js.org/docs/react/get-started/install) with CRA.
