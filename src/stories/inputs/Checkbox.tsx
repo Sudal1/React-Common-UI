@@ -2,15 +2,20 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string
+interface Props {
+  checked: boolean
+  disabled?: boolean
+  children: React.ReactNode
+  onChange(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-const Checkbox = ({ label, ...rest }: Props) => {
+const Checkbox = ({ checked, disabled = false, children, onChange }: Props) => {
   return (
     <Container>
-      <StyledCheckbox type="checkbox" {...rest} />
-      <StyledLabel>{label}</StyledLabel>
+      <StyledLabel>
+        <StyledCheckbox type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
+        {children}
+      </StyledLabel>
     </Container>
   )
 }

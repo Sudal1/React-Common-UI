@@ -1,15 +1,22 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from '@storybook/react'
+import { withThemeFromJSXProvider } from '@storybook/addon-styling'
+import Global from '../src/css/reset'
 
-const preview: Preview = {
+export const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
+      expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
       },
     },
   },
-};
+}
 
-export default preview;
+export const decorators = [
+  withThemeFromJSXProvider({
+    GlobalStyles: Global,
+  }),
+]

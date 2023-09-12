@@ -14,11 +14,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const DefaultInput: Story = {
-  args: {},
+  args: {
+    placeholder: 'This is placeholder.',
+  },
 }
 
 export const ErrorInput: Story = {
   args: {
     errorMessage: 'This is error message for input.',
+  },
+}
+
+export const DisabledInput: Story = {
+  args: {
+    disabled: true,
   },
 }

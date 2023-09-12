@@ -29,11 +29,13 @@ module.exports = {
   settings: { react: { version: 'detect' } },
 
   rules: {
-    'semi': ['error', 'never'],
-    'indent': ['error', 2],
+    semi: ['error', 'never'],
+    indent: ['error', 2],
+    'no-unused-vars': 'off',
     'react/no-unescaped-entities': 'off',
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
   },

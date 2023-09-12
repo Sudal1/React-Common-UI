@@ -16,16 +16,17 @@ const Input = ({ errorMessage, ...rest }: Props) => {
 }
 
 const StyledInput = styled.input`
-  width:100%;
-  border:1px solid ${colors.gray2};
-  border-radius:0.4rem;
-  font-size:1.4rem;
+  width: 100%;
+  border: 1px solid ${colors.gray2};
+  border-radius: 0.4rem;
   padding: 0.4rem; 1.6rem;
+  outline: none;
+  font-size: 1.4rem;
   color: ${colors.gray5};
-  transition: all 0.5s ease;
+  transition: all 0.5s;
 
   &:focus {
-    border: 1px solid ${colors.primary};
+    border: 1px solid ${colors.primary}
   }
   &::placeholder {
     color: ${colors.gray2};
