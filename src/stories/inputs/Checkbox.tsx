@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
 
 interface Props {
@@ -11,21 +12,14 @@ interface Props {
 
 const Checkbox = ({ checked, disabled = false, children, onChange }: Props) => {
   return (
-    <Container>
-      <StyledLabel>
-        <StyledCheckbox type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
-        {children}
-      </StyledLabel>
-    </Container>
+    <StyledLabel disabled={disabled}>
+      <StyledCheckbox type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
+      {children}
+    </StyledLabel>
   )
 }
 
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const StyledCheckbox = styled.input`
+const StyledCheckbox = styled.input<{ disabled?: boolean }>`
   appearance: none;
   margin: 0 1.2rem 0 0;
   width: 2rem;
@@ -34,6 +28,7 @@ const StyledCheckbox = styled.input`
   border-radius: 0.4rem;
   position: relative;
   top: 0.1rem;
+  transition: all 0.25s;
 
   &:checked {
     border-color: transparent;
@@ -43,11 +38,30 @@ const StyledCheckbox = styled.input`
     background-repeat: no-repeat;
     background-color: ${colors.primary};
   }
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      border-color: ${colors.gray0};
+
+      &:checked {
+        background-color: ${colors.gray1};
+      }
+    `}
 `
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<{ disabled?: boolean }>`
+  display: flex;
+  align-items: center;
   font-size: 1.4rem;
   color: ${colors.gray4};
+  transition: all 0.25s;
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      color: ${colors.gray1};
+    `}
 `
 
 export default Checkbox
