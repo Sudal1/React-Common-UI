@@ -9,11 +9,6 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  argTypes: {
-    onChange: {
-      control: 'func',
-    },
-  },
   tags: ['autodocs'],
 } satisfies Meta<typeof Checkbox>
 
@@ -42,9 +37,12 @@ const Template: Story = {
 
 export const DefaultCheckbox: Story = {
   ...Template,
+}
+
+export const DisabledCheckbox: Story = {
+  render: Template.render,
   args: {
-    checked: false,
-    disabled: false,
-    children: 'Default Checkbox',
+    ...Template.args,
+    disabled: true,
   },
 }

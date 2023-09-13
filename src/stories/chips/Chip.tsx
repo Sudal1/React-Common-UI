@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
 
 interface Props {
   isActive?: boolean
-  children: string
+  children: ReactNode
 }
 
 const Chip = ({ isActive = false, ...rest }: Props) => {
@@ -22,6 +23,7 @@ const StyledChip = styled.span<Props>`
   background: ${(props) => (props.isActive ? `${colors.primary}` : `${colors.gray0}`)};
   color: ${(props) => (props.isActive ? '#fff' : `${colors.gray5}`)};
   display: inline-block;
+  transition: all 0.25s;
 
   &:last-child {
     margin: 0;

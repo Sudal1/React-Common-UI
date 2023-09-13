@@ -9,7 +9,7 @@ const meta = {
   },
   argTypes: {
     children: {
-      type: 'string',
+      control: 'text',
     },
   },
   tags: ['autodocs'],

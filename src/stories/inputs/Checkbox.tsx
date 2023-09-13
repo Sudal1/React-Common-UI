@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ReactNode, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
@@ -6,8 +6,8 @@ import { colors } from 'lib/colors'
 interface Props {
   checked: boolean
   disabled?: boolean
-  children: React.ReactNode
-  onChange(event: React.ChangeEvent<HTMLInputElement>): void
+  children: ReactNode
+  onChange(event: ChangeEvent<HTMLInputElement>): void
 }
 
 const Checkbox = ({ checked, disabled = false, children, onChange }: Props) => {
