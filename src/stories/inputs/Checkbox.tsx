@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
 
-interface Props {
+export interface Props {
   checked: boolean
   disabled?: boolean
   children: ReactNode
