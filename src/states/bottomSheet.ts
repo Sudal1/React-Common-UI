@@ -1,4 +1,4 @@
-import React from 'react'
+import { useCallback } from 'react'
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface BottomSheetItem {
@@ -26,12 +26,12 @@ export const useBottomSheetState = () => {
 export const useBottomSheetActions = () => {
   const setState = useSetRecoilState(bottomSheetState)
 
-  const open = React.useCallback(
+  const open = useCallback(
     (items: BottomSheetItem[]) => setState({ visible: true, items }),
     [setState]
   )
 
-  const close = React.useCallback(
+  const close = useCallback(
     () =>
       setState((prev) => {
         return { ...prev, visible: false }
