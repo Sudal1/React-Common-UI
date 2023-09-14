@@ -33,6 +33,7 @@ const CheckboxGroup = ({ items, selectedItems, groupDisabled = false, onChange }
       {items.map((item) => (
         <Checkbox
           key={item.value}
+          value={item.value}
           checked={isChecked(item.value)}
           disabled={isDisabled(item.disabled)}
           onChange={(event) => handleChange({ checked: event.target.checked, item })}

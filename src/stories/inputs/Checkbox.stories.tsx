@@ -30,6 +30,7 @@ const Template: Story = {
     )
   },
   args: {
+    value: 'Default Checkbox',
     checked: false,
     children: 'Default Checkbox',
   },

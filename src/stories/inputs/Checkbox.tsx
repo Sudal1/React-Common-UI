@@ -1,19 +1,56 @@
-import type { ReactNode, ChangeEvent } from 'react'
+import { type ReactNode, type ChangeEvent, useContext } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
+import CheckboxContext from 'context/checkboxGroup'
 
-export interface Props {
-  checked: boolean
+interface Props {
+  value: string | number
+  checked?: boolean
   disabled?: boolean
+  required?: boolean
   children: ReactNode
-  onChange(event: ChangeEvent<HTMLInputElement>): void
+  onChange?(event: ChangeEvent<HTMLInputElement>): void
 }
 
-const Checkbox = ({ checked, disabled = false, children, onChange }: Props) => {
+const Checkbox = ({
+  value,
+  checked = false,
+  disabled = false,
+  required = false,
+  children,
+  onChange,
+}: Props) => {
+  const context = useContext(CheckboxContext)
+
+  if (context === null) {
+    return (
+      <StyledLabel disabled={disabled}>
+        <StyledCheckbox
+          type="checkbox"
+          value={value}
+          checked={checked}
+          disabled={disabled}
+          required={required}
+          onChange={onChange}
+        />
+        {children}
+      </StyledLabel>
+    )
+  }
+
+  const { isChecked, isDisabled, handleChange } = context
+
   return (
     <StyledLabel disabled={disabled}>
-      <StyledCheckbox type="checkbox" checked={checked} disabled={disabled} onChange={onChange} />
+      <StyledCheckbox
+        type="checkbox"
+        value={value}
+        checked={isChecked(value)}
+        disabled={isDisabled(disabled)}
+        required={required}
+        onChange={(event) => handleChange({ checked: event.target.checked, value })}
+      />
       {children}
     </StyledLabel>
   )
