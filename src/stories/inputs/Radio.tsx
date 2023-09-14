@@ -1,24 +1,59 @@
-import React from 'react'
+import { useContext } from 'react'
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
+import RadioContext from 'context/radioGroup'
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string
+interface Props {
+  value: string | number
+  checked?: boolean
+  disabled?: boolean
+  required?: boolean
+  children: React.ReactNode
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-const Radio = ({ label, ...rest }: Props) => {
+const Radio = ({
+  value,
+  checked = false,
+  disabled = false,
+  required = false,
+  children,
+  onChange,
+}: Props) => {
+  const context = useContext(RadioContext)
+
+  if (context === null) {
+    return (
+      <StyledLabel aria-disabled={disabled}>
+        <StyledRadio
+          type="radio"
+          value={value}
+          checked={checked}
+          disabled={disabled}
+          required={required}
+          onChange={onChange}
+        />
+        {children}
+      </StyledLabel>
+    )
+  }
+
+  const { isChecked, isDisabled, handleChange } = context
+
   return (
-    <Container>
-      <StyledRadio type="radio" {...rest} />
-      <StyledLabel>{label}</StyledLabel>
-    </Container>
+    <StyledLabel aria-disabled={disabled}>
+      <StyledRadio
+        type="radio"
+        value={value}
+        checked={isChecked(value)}
+        disabled={isDisabled(disabled)}
+        required={required}
+        onChange={() => handleChange(value)}
+      />
+      {children}
+    </StyledLabel>
   )
 }
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-`
 
 const StyledRadio = styled.input`
   appearance: none;
@@ -41,6 +76,8 @@ const StyledRadio = styled.input`
 `
 
 const StyledLabel = styled.label`
+  display: flex;
+  align-items: center;
   font-size: 1.4rem;
   color: ${colors.gray4};
 `
