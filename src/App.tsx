@@ -6,24 +6,6 @@ import Radio from 'stories/inputs/Radio'
 import RadioGroup from 'stories/inputs/RadioGroup'
 
 function App() {
-  const items = [
-    {
-      value: 'children1',
-      children: 'children1',
-      disabled: false,
-    },
-    {
-      value: 'children2',
-      children: 'children2',
-      disabled: false,
-    },
-    {
-      value: 'children3',
-      children: 'children3',
-      disabled: false,
-    },
-  ]
-
   const [selectedItems, setSelectedItems] = useState<(string | number)[]>([])
   const [selectedItems2, setSelectedItems2] = useState<string | number>()
 

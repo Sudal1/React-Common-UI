@@ -1,20 +1,19 @@
-import type { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import CheckboxContext from 'context/checkboxGroup'
 
 interface Props {
   selectedValues: (string | number)[]
   groupDisabled?: boolean
-  children: ReactNode
-  onChange(items: (string | number)[]): void
+  children: React.ReactNode
+  onChange(values: (string | number)[]): void
 }
 
 const CheckboxGroup = ({ selectedValues, groupDisabled = false, children, onChange }: Props) => {
-  const isChecked = (value: string) => selectedValues.includes(value)
+  const isChecked = (value: string | number) => selectedValues.includes(value)
 
   const isDisabled = (disabled?: boolean) => disabled || groupDisabled
 
-  const handleChange = ({ checked, value }: { checked: boolean; value: string }) => {
+  const handleChange = ({ checked, value }: { checked: boolean; value: string | number }) => {
     if (checked) {
       onChange([...selectedValues, value])
     } else {

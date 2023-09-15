@@ -1,30 +1,29 @@
-import type { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import Checkbox from './Checkbox'
 
-export interface Item {
-  value: string
+interface Item {
+  value: string | number
   disabled?: boolean
-  children: ReactNode
+  children: React.ReactNode
 }
 
 interface Props {
   items: Item[]
-  selectedItems: Item[]
+  selectedValues: (string | number)[]
   groupDisabled?: boolean
-  onChange(items: Item[]): void
+  onChange(values: (string | number)[]): void
 }
 
-const CheckboxGroup = ({ items, selectedItems, groupDisabled = false, onChange }: Props) => {
+const CheckboxGroup = ({ items, selectedValues, groupDisabled = false, onChange }: Props) => {
+  const isChecked = (value: string | number) => selectedValues.includes(value)
+
   const isDisabled = (disabled?: boolean) => disabled || groupDisabled
 
-  const isChecked = (value: string) => selectedItems.map((item) => item.value).includes(value)
-
-  const handleChange = ({ checked, item }: { checked: boolean; item: Item }) => {
+  const handleChange = ({ checked, value }: { checked: boolean; value: string | number }) => {
     if (checked) {
-      onChange([...selectedItems, item])
+      onChange([...selectedValues, value])
     } else {
-      onChange(selectedItems.filter(({ value }) => value !== item.value))
+      onChange(selectedValues.filter((v) => v !== value))
     }
   }
 
@@ -36,7 +35,7 @@ const CheckboxGroup = ({ items, selectedItems, groupDisabled = false, onChange }
           value={item.value}
           checked={isChecked(item.value)}
           disabled={isDisabled(item.disabled)}
-          onChange={(event) => handleChange({ checked: event.target.checked, item })}
+          onChange={(event) => handleChange({ checked: event.target.checked, value: item.value })}
         >
           {item.children}
         </Checkbox>
