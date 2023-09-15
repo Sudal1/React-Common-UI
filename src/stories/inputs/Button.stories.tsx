@@ -5,83 +5,74 @@ const meta = {
   title: 'Inputs/Button',
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   argTypes: {
     children: {
       control: 'text',
     },
+    disabled: {
+      control: 'boolean',
+    },
   },
   args: {
-    variant: 'contained',
-    size: 'md',
     children: 'Hello World',
     wide: false,
     disabled: false,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ display: 'flex', padding: '2.4rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Variants = () => {
-  return (
-    <>
-      <Button variant="contained">contained</Button>
-      <Button variant="outlined">outlined</Button>
-      <Button variant="ghost">ghost</Button>
-      <Button variant="destructive">destructive</Button>
-      <Button variant="text">text</Button>
-    </>
-  )
+export const DefaultButton: Story = {
+  render: (args) => {
+    return <Button {...args} />
+  },
 }
 
-export const Test: Story = {
+export const Variant: Story = {
   render: (args) => {
     return (
       <>
-        <Button variant="contained">contained</Button>
+        <Button>contained</Button>
         <Button variant="outlined">outlined</Button>
         <Button variant="ghost">ghost</Button>
-        <Button variant="destructive">destructive</Button>
         <Button variant="text">text</Button>
+        <Button variant="destructive">destructive</Button>
       </>
     )
   },
-  decorators: [
-    () => {
-      return <Button variant="text">text</Button>
-    },
-  ],
 }
 
-export const ContainedButton: Story = {
-  args: {
-    variant: 'contained',
+export const Size: Story = {
+  render: (args) => {
+    return (
+      <>
+        <Button {...args} size="sm" />
+        <Button {...args} size="md" />
+        <Button {...args} size="lg" />
+      </>
+    )
   },
 }
 
-export const OutlineButton: Story = {
-  args: {
-    variant: 'outlined',
+export const WideButton: Story = {
+  render: (args) => {
+    return <Button {...args} wide />
   },
 }
 
-export const GhostButton: Story = {
-  args: {
-    variant: 'ghost',
-  },
-}
-
-export const DestruciveButton: Story = {
-  args: {
-    variant: 'destructive',
-  },
-}
-
-export const TextButton: Story = {
-  args: {
-    variant: 'text',
+export const DisabledButton: Story = {
+  render: (args) => {
+    return <Button {...args} disabled />
   },
 }
