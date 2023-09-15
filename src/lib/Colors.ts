@@ -14,6 +14,6 @@ export const colors = {
   destructiveHover: '#e86363',
   destructiveActive: '#de2020',
   success: '#34a853',
-  warning: '#edba95e',
+  warning: '#edba95',
   error: '#e23636',
 }
