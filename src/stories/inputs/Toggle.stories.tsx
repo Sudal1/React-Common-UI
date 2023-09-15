@@ -1,16 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ChangeEvent } from 'react'
 import { useArgs } from '@storybook/addons'
-import Checkbox from './Checkbox'
+import Toggle from './Toggle'
 
 const meta = {
-  title: 'Inputs/Checkbox',
-  component: Checkbox,
+  title: 'Inputs/Toggle',
+  component: Toggle,
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    children: {
+      control: 'text',
+    },
+    onChange: {
+      control: 'func',
+    },
+  },
   tags: ['autodocs'],
-} satisfies Meta<typeof Checkbox>
+} satisfies Meta<typeof Toggle>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -24,26 +32,31 @@ const Template: Story = {
     }
 
     return (
-      <Checkbox {...args} checked={checked} onChange={handleChange}>
+      <Toggle {...args} checked={checked} onChange={handleChange}>
         {children}
-      </Checkbox>
+      </Toggle>
     )
   },
   args: {
-    value: 'Default Checkbox',
     checked: false,
-    children: 'Default Checkbox',
+    disabled: false,
   },
 }
 
-export const DefaultCheckbox: Story = {
+export const DefaultToggle: Story = {
   ...Template,
+  args: {
+    checked: false,
+    disabled: false,
+    children: null,
+  },
 }
 
-export const DisabledCheckbox: Story = {
-  render: Template.render,
+export const LabelToggle: Story = {
+  ...Template,
   args: {
-    ...Template.args,
-    disabled: true,
+    checked: false,
+    disabled: false,
+    children: '비밀글',
   },
 }

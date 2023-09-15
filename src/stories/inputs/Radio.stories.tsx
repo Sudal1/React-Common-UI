@@ -4,7 +4,7 @@ import { useArgs } from '@storybook/addons'
 import Radio from './Radio'
 
 const meta = {
-  title: 'CommonUI/Radio',
+  title: 'Inputs/Radio',
   component: Radio,
   parameters: {
     layout: 'centered',

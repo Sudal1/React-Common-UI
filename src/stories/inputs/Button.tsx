@@ -5,21 +5,40 @@ import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
 interface StyleProps {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'destructive'
-  size?: 'sm' | 'md'
+  variant?: 'contained' | 'outlined' | 'ghost' | 'destructive' | 'text'
+  size?: 'sm' | 'md' | 'lg'
   wide?: boolean
 }
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>, StyleProps {
+  disabled?: boolean
   href?: string
   to?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ variant = 'primary', size = 'md', wide = false, href, to, ...rest }: Props, ref: any) => {
+  (
+    {
+      variant = 'contained',
+      size = 'md',
+      wide = false,
+      disabled = false,
+      href,
+      to,
+      ...rest
+    }: Props,
+    ref: any
+  ) => {
     if (href) {
       return (
-        <AnchorButton variant={variant} size={size} wide={wide} href={href} ref={ref}>
+        <AnchorButton
+          variant={variant}
+          size={size}
+          wide={wide}
+          href={href}
+          ref={ref}
+          disabled={disabled}
+        >
           {rest.children}
         </AnchorButton>
       )
@@ -27,14 +46,14 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 
     if (to) {
       return (
-        <LinkButton variant={variant} size={size} wide={wide} to={to} ref={ref}>
+        <LinkButton variant={variant} size={size} wide={wide} to={to} ref={ref} disabled={disabled}>
           {rest.children}
         </LinkButton>
       )
     }
 
     return (
-      <DefaultButton variant={variant} size={size} wide={wide} ref={ref}>
+      <DefaultButton variant={variant} size={size} wide={wide} ref={ref} disabled={disabled}>
         {rest.children}
       </DefaultButton>
     )
@@ -44,33 +63,88 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 Button.displayName = `'Button'`
 
 const variantStyle = {
-  primary: css`
+  contained: css`
     background: ${colors.primary};
     color: #fff;
+
+    &:hover {
+      background: ${colors.primaryHover};
+    }
+
+    &:active {
+      background: ${colors.primaryActive};
+    }
   `,
-  secondary: css`
-    background: ${colors.secondary};
-    color: #fff;
+  outlined: css`
+    border: 1px solid ${colors.primary};
+    color: ${colors.primary};
+
+    &:hover {
+      color: ${colors.primaryHover};
+      border-color: ${colors.primaryHover};
+    }
+
+    &:active {
+      color: ${colors.primaryActive};
+      border-color: ${colors.primaryActive};
+    }
   `,
   ghost: css`
-    border: 1px solid ${colors.gray1};
     background: transparent;
-    color: ${colors.gray3};
+    color: ${colors.primary};
+
+    &:hover {
+      background: ${colors.primaryHoverLight};
+      color: ${colors.primary};
+    }
+
+    &:active {
+      background: ${colors.primaryActiveLight};
+      color: ${colors.primaryActive};
+    }
   `,
   destructive: css`
     background: ${colors.destructive};
     color: #fff;
+
+    &:hover {
+      background: ${colors.destructiveHover};
+    }
+
+    &:active {
+      background: ${colors.destructiveActive};
+    }
+  `,
+  text: css`
+    color: ${colors.gray3};
+
+    &:hover {
+      background: ${colors.gray0};
+      color: ${colors.gray3};
+    }
+
+    &:active {
+      background: ${colors.gray1};
+      color: ${colors.gray5};
+    }
   `,
 }
 
 const sizeStyle = {
   sm: css`
     font-size: 1.2rem;
-    padding: 0.8rem 0.8rem;
+    padding: 0 1.2rem;
+    height: 3.2rem;
   `,
   md: css`
     font-size: 1.4rem;
-    padding: 1.2rem 1.2rem;
+    padding: 0 1.6rem;
+    height: 4rem;
+  `,
+  lg: css`
+    font-size: 1.6rem;
+    padding: 0 2.4rem;
+    height: 4.8rem;
   `,
 }
 
@@ -80,12 +154,13 @@ const commonStyle = (props: StyleProps) => css`
   justyfy-content: center;
   font-weight: 500;
   border: 0;
-  border-radius: 0.4rem;
+  border-radius: 2.4rem;
   transition: all 0.5s ease;
   cursor: pointer;
 
   &:disabled {
-    filter: grayscale(0.6);
+    opacity: 0.4;
+    filter: grayscale(0.7);
   }
 
   ${sizeStyle[props.size!]}
@@ -97,16 +172,16 @@ const commonStyle = (props: StyleProps) => css`
   `}
 `
 
-const AnchorButton = styled.a<StyleProps>`
+const AnchorButton = styled.a<Props>`
   ${(props) => commonStyle(props)}
   text-decoration: none;
 `
-const LinkButton = styled(Link)<StyleProps>`
+const LinkButton = styled(Link)<Props>`
   ${(props) => commonStyle(props)}
   text-decoration: none;
 `
 
-const DefaultButton = styled.button<StyleProps>`
+const DefaultButton = styled.button<Props>`
   ${(props) => commonStyle(props)}
 `
 

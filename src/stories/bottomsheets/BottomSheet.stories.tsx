@@ -8,7 +8,7 @@ interface BottomSheetItem {
 }
 
 const meta = {
-  title: 'CommonUI/BottomSheet',
+  title: 'Global/BottomSheet',
   component: BottomSheet,
   parameters: {
     layout: 'centered',

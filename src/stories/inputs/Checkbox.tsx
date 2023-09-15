@@ -56,7 +56,7 @@ const Checkbox = ({
   )
 }
 
-const StyledCheckbox = styled.input<{ disabled?: boolean }>`
+const StyledCheckbox = styled.input`
   appearance: none;
   margin: 0 1.2rem 0 0;
   width: 2rem;
@@ -69,22 +69,12 @@ const StyledCheckbox = styled.input<{ disabled?: boolean }>`
 
   &:checked {
     border-color: transparent;
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg viewBox='2 2 12 12' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
     background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;
     background-color: ${colors.primary};
   }
-
-  ${(props) =>
-    props.disabled &&
-    css`
-      border-color: ${colors.gray0};
-
-      &:checked {
-        background-color: ${colors.gray1};
-      }
-    `}
 `
 
 const StyledLabel = styled.label<{ disabled?: boolean }>`
@@ -97,7 +87,8 @@ const StyledLabel = styled.label<{ disabled?: boolean }>`
   ${(props) =>
     props.disabled &&
     css`
-      color: ${colors.gray1};
+      opacity: 0.4;
+      filter: grayscale(0.7);
     `}
 `
 

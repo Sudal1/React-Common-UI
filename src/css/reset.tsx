@@ -3,6 +3,7 @@ import { Global, css } from '@emotion/react'
 const GlobalStyle = () => (
   <Global
     styles={css`
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto:wght@400;500&display=swap');
       html,
       body,
       div,
@@ -88,7 +89,7 @@ const GlobalStyle = () => (
         padding: 0;
         border: 0;
         font-size: 100%;
-        font: inherit;
+        font-family: 'Noto Sans KR', 'Roboto', sans-serif;
         vertical-align: baseline;
       }
       /* HTML5 display-role reset for older browsers */

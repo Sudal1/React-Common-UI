@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Chip from './Chip'
 
 const meta = {
-  title: 'CommonUI/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
   parameters: {
     layout: 'centered',
@@ -11,6 +11,9 @@ const meta = {
     children: {
       type: 'string',
     },
+  },
+  args: {
+    size: 'sm',
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Chip>
