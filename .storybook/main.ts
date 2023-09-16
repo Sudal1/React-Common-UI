@@ -6,13 +6,14 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-styling',
-    '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
     '@storybook/preset-create-react-app',
   ],
   framework: {
     name: '@storybook/react-webpack5',
-    options: {},
+    options: {
+      legacyRootApi: true,
+    },
   },
   docs: {
     autodocs: 'tag',

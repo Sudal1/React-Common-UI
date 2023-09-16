@@ -2,7 +2,6 @@ import type { Preview } from '@storybook/react'
 import { withThemeFromJSXProvider } from '@storybook/addon-styling'
 import { ThemeProvider } from '@emotion/react'
 import { lightTheme, darkTheme } from '../src/themes/theme'
-import { themes } from '@storybook/theming'
 import Global from '../src/css/reset'
 
 export const preview: Preview = {

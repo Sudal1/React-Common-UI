@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import CheckboxGroup2 from 'stories/inputs/CheckboxGroup2'
+import CheckboxGroup2 from 'stories/inputs/CheckboxGroup'
 import Checkbox from 'stories/inputs/Checkbox'
 import Radio from 'stories/inputs/Radio'
 import RadioGroup from 'stories/inputs/RadioGroup'
 
 function App() {
   const [selectedItems, setSelectedItems] = useState<(string | number)[]>([])
-  const [selectedItems2, setSelectedItems2] = useState<string | number>()
+  const [selectedItems2, setSelectedItems2] = useState<string | number>('')
 
   return (
     <>

@@ -1,20 +1,14 @@
 import styled from '@emotion/styled'
-import Checkbox from './Checkbox'
-
-interface Item {
-  value: string | number
-  disabled?: boolean
-  children: React.ReactNode
-}
+import CheckboxContext from 'context/checkboxGroup'
 
 interface Props {
-  items: Item[]
   selectedValues: (string | number)[]
   groupDisabled?: boolean
+  children: React.ReactNode
   onChange(values: (string | number)[]): void
 }
 
-const CheckboxGroup = ({ items, selectedValues, groupDisabled = false, onChange }: Props) => {
+const CheckboxGroup = ({ selectedValues, groupDisabled = false, children, onChange }: Props) => {
   const isChecked = (value: string | number) => selectedValues.includes(value)
 
   const isDisabled = (disabled?: boolean) => disabled || groupDisabled
@@ -29,17 +23,9 @@ const CheckboxGroup = ({ items, selectedValues, groupDisabled = false, onChange 
 
   return (
     <StyledFieldset>
-      {items.map((item) => (
-        <Checkbox
-          key={item.value}
-          value={item.value}
-          checked={isChecked(item.value)}
-          disabled={isDisabled(item.disabled)}
-          onChange={(event) => handleChange({ checked: event.target.checked, value: item.value })}
-        >
-          {item.children}
-        </Checkbox>
-      ))}
+      <CheckboxContext.Provider value={{ isChecked, isDisabled, handleChange }}>
+        {children}
+      </CheckboxContext.Provider>
     </StyledFieldset>
   )
 }

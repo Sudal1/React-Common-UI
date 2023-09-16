@@ -22,7 +22,7 @@ const Checkbox = ({
   onChange,
 }: Props) => {
   const context = useContext(CheckboxContext)
-
+  
   if (context === null) {
     return (
       <StyledLabel disabled={disabled}>
