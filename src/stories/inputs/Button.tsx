@@ -151,12 +151,17 @@ const sizeStyle = {
 const commonStyle = (props: StyleProps) => css`
   display: flex;
   align-items: center;
-  justyfy-content: center;
+  justify-content: center;
   font-weight: 500;
   border: 0;
   border-radius: 2.4rem;
   transition: all 0.5s ease;
   cursor: pointer;
+  margin-right: 0.8rem;
+
+  &:last-child {
+    margin: 0;
+  }
 
   &:disabled {
     opacity: 0.4;
