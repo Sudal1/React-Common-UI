@@ -4,31 +4,44 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
-type variantType = 'primary' | 'destructive'
+type colorType = 'primary' | 'destructive'
+
+type shapeType = 'contained' | 'outlined' | 'text'
+
+type sizeType = 'sm' | 'md' | 'lg'
+
+type MergedHTMLAttributes = Omit<
+  React.HTMLAttributes<HTMLElement> &
+    React.ButtonHTMLAttributes<HTMLElement> &
+    React.AnchorHTMLAttributes<HTMLElement>,
+  'color'
+>
 
 interface StyleProps {
-  variant?: variantType
-  shape?: 'contained' | 'outlined' | 'text'
-  size?: 'sm' | 'md' | 'lg'
+  color?: colorType
+  shape?: shapeType
+  size?: sizeType
   wide?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
 }
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>, StyleProps {
+interface Props extends StyleProps, MergedHTMLAttributes {
+  children?: React.ReactNode
   href?: string
   to?: string
 }
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
   (
     {
-      variant = 'primary',
+      color = 'primary',
       shape = 'contained',
       size = 'md',
       wide = false,
       leftIcon,
       rightIcon,
+      children,
       href,
       to,
       ...rest
@@ -37,9 +50,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
   ) => {
     if (href) {
       return (
-        <AnchorButton variant={variant} shape={shape} size={size} wide={wide} href={href} ref={ref}>
+        <AnchorButton color={color} shape={shape} size={size} wide={wide} href={href} ref={ref}>
           {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
-          {rest.children}
+          {children}
           {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
         </AnchorButton>
       )
@@ -47,18 +60,18 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 
     if (to) {
       return (
-        <LinkButton variant={variant} shape={shape} size={size} wide={wide} to={to} ref={ref}>
+        <LinkButton color={color} shape={shape} size={size} wide={wide} to={to} ref={ref}>
           {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
-          {rest.children}
+          {children}
           {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
         </LinkButton>
       )
     }
 
     return (
-      <DefaultButton variant={variant} shape={shape} size={size} wide={wide} ref={ref} {...rest}>
+      <DefaultButton color={color} shape={shape} size={size} wide={wide} ref={ref} {...rest}>
         {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
-        {rest.children}
+        {children}
         {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
       </DefaultButton>
     )
@@ -67,24 +80,21 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 
 Button.displayName = `'Button'`
 
-const shapeStyle = {
-  contained: css`
-    background: ${colors.primary};
-    color: #fff;
+const colorStyle = (color: colorType) => css`
+  border-color: ${colors[color]};
+  color: ${colors[color]};
+`
 
-    &:hover {
-      background: ${colors.primaryHover};
-    }
+const backgroundStyle = (color: colorType) => css`
+  background: ${colors[color]};
 
-    &:active {
-      background: ${colors.primaryActive};
-    }
-  `,
-  outlined: css`
-    border: 1px solid;
-  `,
-  text: css``,
-}
+  &:hover {
+    background: ${colors[(color + 'Hover') as colorType]};
+  }
+  &:active {
+    background: ${colors[(color + 'Active') as colorType]};
+  }
+`
 
 const sizeStyle = {
   sm: css`
@@ -137,7 +147,18 @@ const commonStyle = (props: StyleProps) => css`
   }
 
   ${sizeStyle[props.size!]}
-  ${shapeStyle[props.shape!]}
+  ${colorStyle(props.color!)}
+  
+  ${props.shape === 'contained' &&
+  css`
+    color: #fff;
+    ${backgroundStyle(props.color!)}
+  `}
+
+  ${props.shape === 'outlined' &&
+  css`
+    border: 1px solid;
+  `}
 
   ${props.wide &&
   css`
