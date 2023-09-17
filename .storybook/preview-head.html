@@ -18,7 +18,6 @@
 
   #storybook-docs a:hover:not(.sb-story a:hover),
   #storybook-docs a:focus:not(.sb-story a:focus) {
-    border: 1px solid #3d5afe;
     color: #3d5afe;
   }
 
@@ -28,6 +27,14 @@
     color: #3d5afe;
   }
 
+  #storybook-docs .docblock-argstable-body textarea {
+    min-height: 32rem;
+  }
+
+  #storybook-docs .docblock-argstable-body button[type='submit'] {
+    background-color: #3d5afe;
+  }
+
   #storybook-docs .docblock-argstable-body input:focus:not(input[type='radio']),
   #storybook-docs .docblock-argstable-body textarea:focus,
   #storybook-docs .docblock-argstable-body select:focus,
@@ -35,17 +42,34 @@
     box-shadow: #3d5afe 0 0 0 1px inset !important;
   }
 
-  .css-1p5as1g .rejt-value-node > svg,
-  .css-1p5as1g .rejt-object-node > .rejt-collapsed > svg,
-  .css-1p5as1g .rejt-array-node > .rejt-collapsed > svg,
-  .css-1p5as1g .rejt-object-node > .rejt-not-collapsed > svg,
-  .css-1p5as1g .rejt-array-node > .rejt-not-collapsed > svg:hover,
-  .css-1p5as1g .rejt-value-node > svg,
-  .css-1p5as1g .rejt-object-node > .rejt-collapsed > svg,
-  .css-1p5as1g .rejt-array-node > .rejt-collapsed > svg,
-  .css-1p5as1g .rejt-object-node > .rejt-not-collapsed > svg,
-  .css-1p5as1g .rejt-array-node > .rejt-not-collapsed > svg:focus {
+  .rejt-value-node > svg,
+  .rejt-object-node > .rejt-collapsed > svg,
+  .rejt-array-node > .rejt-collapsed > svg,
+  .rejt-object-node > .rejt-not-collapsed > svg,
+  .rejt-array-node > .rejt-not-collapsed > svg:hover,
+  .rejt-value-node > svg,
+  .rejt-object-node > .rejt-collapsed > svg,
+  .rejt-array-node > .rejt-collapsed > svg,
+  .rejt-object-node > .rejt-not-collapsed > svg,
+  .rejt-array-node > .rejt-not-collapsed > svg:focus {
     color: #3d5afe !important;
+    fill: #3d5afe !important;
+  }
+
+  .docblock-argstable-body a {
+    color: #3d5afe;
+  }
+  .docblock-argstable-body a svg,
+  .docblock-argstable-body a path {
+    fill: #3d5afe !important;
+  }
+  .docblock-argstable-body a:hover {
+    border-color: initial;
+    box-shadow: 0 !important;
+    background: transparent;
+  }
+  .docblock-argstable-body a:hover svg,
+  .docblock-argstable-body a:hover path {
     fill: #3d5afe !important;
   }
 </style>
