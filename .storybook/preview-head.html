@@ -11,20 +11,28 @@
     box-shadow: #3d5afe 0 0 0 1px inset !important;
   }
 
-  #storybook-docs svg path:hover,
-  #storybook-docs svg path:focus {
+  #storybook-docs svg path:hover:not(.sb-story svg path:hover),
+  #storybook-docs svg path:focus:not(.sb-story svg path:focus) {
     fill: #3d5afe;
   }
 
-  #storybook-docs a:hover,
-  #storybook-docs a:focus {
+  #storybook-docs a:hover:not(.sb-story a:hover),
+  #storybook-docs a:focus:not(.sb-story a:focus) {
     border: 1px solid #3d5afe;
     color: #3d5afe;
   }
 
-  #storybook-docs button:hover {
+  .sbdocs-preview button:hover:not(.sb-story button),
+  .docblock-argstable-head button:hover {
     background-color: rgba(61, 90, 254, 0.15);
     color: #3d5afe;
+  }
+
+  #storybook-docs .docblock-argstable-body input:focus:not(input[type='radio']),
+  #storybook-docs .docblock-argstable-body textarea:focus,
+  #storybook-docs .docblock-argstable-body select:focus,
+  #storybook-docs .docblock-argstable-body button:focus {
+    box-shadow: #3d5afe 0 0 0 1px inset !important;
   }
 
   .css-1p5as1g .rejt-value-node > svg,
