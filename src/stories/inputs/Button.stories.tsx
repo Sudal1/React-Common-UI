@@ -25,6 +25,7 @@ const meta = {
         type: 'radio',
       },
     },
+    to: { table: { disable: true } },
     wide: {
       control: 'boolean',
     },
@@ -58,11 +59,6 @@ const meta = {
       },
     },
   },
-  args: {
-    children: 'Hello World',
-    wide: false,
-    disabled: false,
-  },
   decorators: [
     (Story) => (
       <div style={{ display: 'flex', padding: '2.4rem' }}>
@@ -86,9 +82,9 @@ export const Variant: Story = {
   render: (args) => {
     return (
       <>
-        <Button>contained</Button>
-        <Button shape="outlined">outlined</Button>
-        <Button shape="text">text</Button>
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="thrtiary">Thrtiary</Button>
       </>
     )
   },

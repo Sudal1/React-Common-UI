@@ -4,10 +4,7 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
-type colorType = 'primary' | 'destructive'
-
-type shapeType = 'contained' | 'outlined' | 'text'
-
+type variantType = 'primary' | 'secondary' | 'thrtiary'
 type sizeType = 'sm' | 'md' | 'lg'
 
 type MergedHTMLAttributes = Omit<
@@ -18,10 +15,10 @@ type MergedHTMLAttributes = Omit<
 >
 
 interface StyleProps {
-  color?: colorType
-  shape?: shapeType
+  variant?: variantType
   size?: sizeType
   wide?: boolean
+  disabled?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
 }
@@ -35,13 +32,13 @@ interface Props extends StyleProps, MergedHTMLAttributes {
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
   (
     {
-      color = 'primary',
-      shape = 'contained',
+      variant = 'primary',
       size = 'md',
       wide = false,
+      disabled = false,
       leftIcon,
       rightIcon,
-      children,
+      children = 'Button Text',
       href,
       to,
       ...rest
@@ -50,7 +47,15 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
   ) => {
     if (href) {
       return (
-        <AnchorButton color={color} shape={shape} size={size} wide={wide} href={href} ref={ref}>
+        <AnchorButton
+          variant={variant}
+          size={size}
+          wide={wide}
+          disabled={disabled}
+          href={href}
+          ref={ref}
+          {...rest}
+        >
           {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
           {children}
           {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
@@ -60,7 +65,15 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
 
     if (to) {
       return (
-        <LinkButton color={color} shape={shape} size={size} wide={wide} to={to} ref={ref}>
+        <LinkButton
+          variant={variant}
+          size={size}
+          wide={wide}
+          disabled={disabled}
+          to={to}
+          ref={ref}
+          {...rest}
+        >
           {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
           {children}
           {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
@@ -69,7 +82,14 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
     }
 
     return (
-      <DefaultButton color={color} shape={shape} size={size} wide={wide} ref={ref} {...rest}>
+      <DefaultButton
+        variant={variant}
+        size={size}
+        wide={wide}
+        disabled={disabled}
+        ref={ref}
+        {...rest}
+      >
         {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
         {children}
         {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
@@ -80,27 +100,56 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
 
 Button.displayName = `'Button'`
 
-const colorStyle = (color: colorType) => css`
-  border-color: ${colors[color]};
-  color: ${colors[color]};
-`
+const variantStyle = {
+  primary: css`
+    background-color: ${colors.primary};
+    color: #fff;
 
-const backgroundStyle = (color: colorType) => css`
-  background: ${colors[color]};
+    &:hover {
+      background-color: ${colors.primaryHover};
+    }
 
-  &:hover {
-    background: ${colors[(color + 'Hover') as colorType]};
-  }
-  &:active {
-    background: ${colors[(color + 'Active') as colorType]};
-  }
-`
+    &:active {
+      background-color: ${colors.primaryActive};
+    }
+  `,
+  secondary: css`
+    border: 1px solid ${colors.primary};
+    color: ${colors.primary};
+
+    &:hover {
+      background-color: ${colors.primaryHoverLight};
+      border-color: ${colors.primaryHover};
+      color: ${colors.primaryActive};
+    }
+
+    &:active {
+      border-color: ${colors.primaryActive};
+      background-color: ${colors.primaryActiveLight};
+      color: ${colors.primaryActive};
+    }
+  `,
+
+  thrtiary: css`
+    color: ${colors.gray3};
+
+    &:hover {
+      background-color: ${colors.gray0};
+    }
+
+    &:active {
+      color: ${colors.gray4};
+      background-color: ${colors.gray1};
+    }
+  `,
+}
 
 const sizeStyle = {
   sm: css`
     font-size: 1.2rem;
     padding: 0 1.2rem;
     height: 3.2rem;
+    max-height: 3.2rem;
     svg {
       width: 2rem;
       height: 2rem;
@@ -110,6 +159,7 @@ const sizeStyle = {
     font-size: 1.4rem;
     padding: 0 1.6rem;
     height: 4rem;
+    max-height: 4rem;
     svg {
       width: 2.4rem;
       heigth: 2.4rem;
@@ -119,6 +169,7 @@ const sizeStyle = {
     font-size: 1.6rem;
     padding: 0 2.4rem;
     height: 4.8rem;
+    max-height: 4.8rem;
     svg {
       width: 3.2rem;
       heigth: 3.2rem;
@@ -126,43 +177,35 @@ const sizeStyle = {
   `,
 }
 
-const commonStyle = (props: StyleProps) => css`
+const commonStyle = (props: Props) => css`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-weight: 500;
   border: 0;
   border-radius: 2.4rem;
   transition: all 0.5s ease;
   cursor: pointer;
   margin-right: 0.8rem;
+  line-height: 1.5;
+  vertical-align: center;
 
   &:last-child {
     margin: 0;
   }
 
-  &:disabled {
-    opacity: 0.4;
-    filter: grayscale(0.7);
-  }
-
   ${sizeStyle[props.size!]}
-  ${colorStyle(props.color!)}
-  
-  ${props.shape === 'contained' &&
-  css`
-    color: #fff;
-    ${backgroundStyle(props.color!)}
-  `}
-
-  ${props.shape === 'outlined' &&
-  css`
-    border: 1px solid;
-  `}
+  ${variantStyle[props.variant!]}
 
   ${props.wide &&
   css`
     width: 100%;
+  `}
+
+  ${props.disabled &&
+  css`
+    opacity: 0.4;
+    filter: grayscale(0.7);
   `}
 `
 

@@ -3,7 +3,11 @@ import { Global, css } from '@emotion/react'
 const GlobalStyle = () => (
   <Global
     styles={css`
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Nunito+Sans:opsz@6..12&family=Roboto:wght@400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600&family=Roboto:wght@400;500&display=swap');
+
+      * {
+        font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+      }
       html,
       body,
       div,
@@ -89,8 +93,8 @@ const GlobalStyle = () => (
         padding: 0;
         border: 0;
         font-size: 100%;
-        font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
         vertical-align: baseline;
+        box-sizing: border-box;
       }
       /* HTML5 display-role reset for older browsers */
       article,
