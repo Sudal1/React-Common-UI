@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Button from './Button'
+import { Home, PlusCircle, Search, Setting } from '../../icons/Icons'
+
+const Icons = {
+  Home: <Home />,
+  PlusCircle: <PlusCircle />,
+  Search: <Search />,
+  Setting: <Setting />,
+}
 
 const meta = {
   title: 'Inputs/Button',
@@ -11,8 +19,43 @@ const meta = {
     children: {
       control: 'text',
     },
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'radio',
+      },
+    },
+    wide: {
+      control: 'boolean',
+    },
     disabled: {
       control: 'boolean',
+    },
+    leftIcon: {
+      options: Object.keys(Icons),
+      mapping: Icons,
+      control: {
+        type: 'select',
+        labels: {
+          Home: 'Home',
+          PlusCircle: 'PlusCircle',
+          Search: 'Search',
+          Setting: 'Setting',
+        },
+      },
+    },
+    rightIcon: {
+      options: Object.keys(Icons),
+      mapping: Icons,
+      control: {
+        type: 'select',
+        labels: {
+          Home: 'Home',
+          PlusCircle: 'PlusCircle',
+          Search: 'Search',
+          Setting: 'Setting',
+        },
+      },
     },
   },
   args: {
@@ -44,10 +87,8 @@ export const Variant: Story = {
     return (
       <>
         <Button>contained</Button>
-        <Button variant="outlined">outlined</Button>
-        <Button variant="ghost">ghost</Button>
-        <Button variant="text">text</Button>
-        <Button variant="destructive">destructive</Button>
+        <Button shape="outlined">outlined</Button>
+        <Button shape="text">text</Button>
       </>
     )
   },

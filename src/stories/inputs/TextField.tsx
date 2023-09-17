@@ -4,12 +4,13 @@ import { colors } from 'lib/colors'
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
+  type?: 'text' | 'date' | 'email' | 'number' | 'password' | 'url'
 }
 
-const TextField = ({ errorMessage, ...rest }: Props) => {
+const TextField = ({ type = 'text', errorMessage, ...rest }: Props) => {
   return (
     <>
-      <StyledInput {...rest} />
+      <StyledInput type={type} {...rest} />
       {errorMessage && <Message>{errorMessage}</Message>}
     </>
   )

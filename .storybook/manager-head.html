@@ -7,6 +7,28 @@
     color: white;
   }
 
-  #storybook-explorer-tree #global-bottomsheet {
+  #storybook-explorer-tree .sidebar-item button[aria-expanded='true'],
+  #storybook-explorer-tree .sidebar-item button:focus,
+  #storybook-explorer-tree .sidebar-item a[data-selected]:hover {
+    background-color: rgba(61, 90, 254, 0.1);
+  }
+
+  #storybook-explorer-tree a[data-selected='true'],
+  #storybook-explorer-tree a[data-selected='true']:hover {
+    background-color: #3d5afe;
+    color: #f0f3ff;
+  }
+
+  #storybook-explorer-tree a[data-selected='true'] svg {
+    color: #f0f3ff;
+  }
+
+  .os-content button:hover {
+    background-color: rgba(61, 90, 254, 0.1);
+    color: #3d5afe;
+  }
+
+  .os-content button:hover svg {
+    color: #3d5afe;
   }
 </style>

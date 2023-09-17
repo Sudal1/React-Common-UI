@@ -4,14 +4,18 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
+type variantType = 'primary' | 'destructive'
+
 interface StyleProps {
-  variant?: 'contained' | 'outlined' | 'ghost' | 'destructive' | 'text'
+  variant?: variantType
+  shape?: 'contained' | 'outlined' | 'text'
   size?: 'sm' | 'md' | 'lg'
   wide?: boolean
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
 }
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>, StyleProps {
-  disabled?: boolean
   href?: string
   to?: string
 }
@@ -19,10 +23,12 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>, StyleProp
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   (
     {
-      variant = 'contained',
+      variant = 'primary',
+      shape = 'contained',
       size = 'md',
       wide = false,
-      disabled = false,
+      leftIcon,
+      rightIcon,
       href,
       to,
       ...rest
@@ -31,30 +37,29 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
   ) => {
     if (href) {
       return (
-        <AnchorButton
-          variant={variant}
-          size={size}
-          wide={wide}
-          href={href}
-          ref={ref}
-          disabled={disabled}
-        >
+        <AnchorButton variant={variant} shape={shape} size={size} wide={wide} href={href} ref={ref}>
+          {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
           {rest.children}
+          {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
         </AnchorButton>
       )
     }
 
     if (to) {
       return (
-        <LinkButton variant={variant} size={size} wide={wide} to={to} ref={ref} disabled={disabled}>
+        <LinkButton variant={variant} shape={shape} size={size} wide={wide} to={to} ref={ref}>
+          {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
           {rest.children}
+          {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
         </LinkButton>
       )
     }
 
     return (
-      <DefaultButton variant={variant} size={size} wide={wide} ref={ref} disabled={disabled}>
+      <DefaultButton variant={variant} shape={shape} size={size} wide={wide} ref={ref} {...rest}>
+        {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
         {rest.children}
+        {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
       </DefaultButton>
     )
   }
@@ -62,7 +67,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 
 Button.displayName = `'Button'`
 
-const variantStyle = {
+const shapeStyle = {
   contained: css`
     background: ${colors.primary};
     color: #fff;
@@ -76,58 +81,9 @@ const variantStyle = {
     }
   `,
   outlined: css`
-    border: 1px solid ${colors.primary};
-    color: ${colors.primary};
-
-    &:hover {
-      color: ${colors.primaryHover};
-      border-color: ${colors.primaryHover};
-    }
-
-    &:active {
-      color: ${colors.primaryActive};
-      border-color: ${colors.primaryActive};
-    }
+    border: 1px solid;
   `,
-  ghost: css`
-    background: transparent;
-    color: ${colors.primary};
-
-    &:hover {
-      background: ${colors.primaryHoverLight};
-      color: ${colors.primary};
-    }
-
-    &:active {
-      background: ${colors.primaryActiveLight};
-      color: ${colors.primaryActive};
-    }
-  `,
-  destructive: css`
-    background: ${colors.destructive};
-    color: #fff;
-
-    &:hover {
-      background: ${colors.destructiveHover};
-    }
-
-    &:active {
-      background: ${colors.destructiveActive};
-    }
-  `,
-  text: css`
-    color: ${colors.gray3};
-
-    &:hover {
-      background: ${colors.gray0};
-      color: ${colors.gray3};
-    }
-
-    &:active {
-      background: ${colors.gray1};
-      color: ${colors.gray5};
-    }
-  `,
+  text: css``,
 }
 
 const sizeStyle = {
@@ -135,16 +91,28 @@ const sizeStyle = {
     font-size: 1.2rem;
     padding: 0 1.2rem;
     height: 3.2rem;
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
   `,
   md: css`
     font-size: 1.4rem;
     padding: 0 1.6rem;
     height: 4rem;
+    svg {
+      width: 2.4rem;
+      heigth: 2.4rem;
+    }
   `,
   lg: css`
     font-size: 1.6rem;
     padding: 0 2.4rem;
     height: 4.8rem;
+    svg {
+      width: 3.2rem;
+      heigth: 3.2rem;
+    }
   `,
 }
 
@@ -169,7 +137,7 @@ const commonStyle = (props: StyleProps) => css`
   }
 
   ${sizeStyle[props.size!]}
-  ${variantStyle[props.variant!]}
+  ${shapeStyle[props.shape!]}
 
   ${props.wide &&
   css`
@@ -188,6 +156,14 @@ const LinkButton = styled(Link)<Props>`
 
 const DefaultButton = styled.button<Props>`
   ${(props) => commonStyle(props)}
+`
+
+const LeftIcon = styled.span`
+  margin-right: 0.6rem;
+`
+
+const RightIcon = styled.span`
+  margin-left: 0.6rem;
 `
 
 export default Button

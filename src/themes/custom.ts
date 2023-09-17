@@ -8,7 +8,7 @@ export default create({
   colorSecondary: colors.primaryActive,
 
   // Typography
-  fontBase: '"Noto Sans KR", "Nunito Sans", sans-serif',
+  fontBase: '"Nunito Sans", sans-serif',
   brandTitle: 'Dinggul Storybook',
   brandTarget: '_self',
 
