@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
 
-type variantType = 'primary' | 'secondary' | 'thrtiary'
+type variantType = 'primary' | 'secondary' | 'tertiary'
 type sizeType = 'sm' | 'md' | 'lg'
 
 interface Props {
@@ -21,7 +21,10 @@ const CheckboxGroup = ({ variant = 'primary', size = 'md', children }: Props) =>
 
 const variantStyle = {
   primary: css`
-    border-right: 1px solid ${colors.primaryDark};
+    & > button,
+    a {
+      border-right: 1px solid ${colors.primaryDark};
+    }
   `,
   secondary: css`
     & > button,
@@ -31,7 +34,7 @@ const variantStyle = {
     }
   `,
 
-  thrtiary: css`
+  tertiary: css`
     & > button,
     a {
       border-radius: 0;
@@ -85,16 +88,14 @@ const commonStyle = (props: Props) => css`
     }
   `}
 
-  ${props.variant !== 'thrtiary' &&
+  ${props.variant !== 'tertiary' &&
   css`
-    &:first-child {
-      border-radius: 2.4rem 0 0 2.4rem;
-      padding-left: 2rem;
+    & > button:first-child {
+      border-radius: 0.4rem 0 0 0.4rem;
     }
 
-    &:last-child {
-      border-radius: 0 2.4rem 2.4rem 0;
-      padding-right: 2rem;
+    & > button:last-child {
+      border-radius: 0 0.4rem 0.4rem 0;
     }
   `}
 

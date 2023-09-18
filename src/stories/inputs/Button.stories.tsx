@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Button from './Button'
-import { Home, PlusCircle, Search, Setting } from '../../icons/Icons'
+import { Home, Add, Search, Setting } from '../../icons/Icons'
 
 const Icons = {
   Home: <Home />,
-  PlusCircle: <PlusCircle />,
+  Add: <Add />,
   Search: <Search />,
   Setting: <Setting />,
 }
@@ -18,6 +18,12 @@ const meta = {
   argTypes: {
     children: {
       control: 'text',
+    },
+    variant: {
+      options: ['primary', 'secondary', 'tertiary', 'positive', 'negative'],
+      control: {
+        type: 'radio',
+      },
     },
     size: {
       options: ['sm', 'md', 'lg'],
@@ -39,7 +45,7 @@ const meta = {
         type: 'select',
         labels: {
           Home: 'Home',
-          PlusCircle: 'PlusCircle',
+          Add: 'Add',
           Search: 'Search',
           Setting: 'Setting',
         },
@@ -52,7 +58,7 @@ const meta = {
         type: 'select',
         labels: {
           Home: 'Home',
-          PlusCircle: 'PlusCircle',
+          Add: 'Add',
           Search: 'Search',
           Setting: 'Setting',
         },
@@ -84,7 +90,9 @@ export const Variant: Story = {
       <>
         <Button>Primary</Button>
         <Button variant="secondary">Secondary</Button>
-        <Button variant="thrtiary">Thrtiary</Button>
+        <Button variant="tertiary">Tertiary</Button>
+        <Button variant="positive">Positive</Button>
+        <Button variant="negative">Negative</Button>
       </>
     )
   },
@@ -99,6 +107,18 @@ export const Size: Story = {
         <Button {...args} size="lg" />
       </>
     )
+  },
+}
+
+export const LeftIconButton: Story = {
+  render: (args) => {
+    return <Button {...args} leftIcon={<Search />} />
+  },
+}
+
+export const RightIconButton: Story = {
+  render: (args) => {
+    return <Button {...args} rightIcon={<Add />} />
   },
 }
 

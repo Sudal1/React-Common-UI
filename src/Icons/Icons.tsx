@@ -1,34 +1,49 @@
 import { SVGProps } from 'react'
 
 export const Home = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
+    <path fill="currentColor" d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z" />
   </svg>
 )
 
-export const PlusCircle = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path
-      fill="currentColor"
-      d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Zm0-18a10 10 0 1 0 0 20 10 10 0 0 0 0-20m1 5h-2v4H7v2h4v4h2v-4h4v-2h-4V7Z"
-    />
+export const Add = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
+    <path fill="currentColor" d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
   </svg>
 )
 
 export const Search = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
     <path
       fill="currentColor"
-      d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16a6.5 6.5 0 1 1 0-13m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"
+      d="M 784 -120 L 532 -372 q -30 24 -69 38 t -83 14 q -109 0 -184.5 -75.5 T 120 -580 q 0 -109 75.5 -184.5 T 380 -840 q 109 0 184.5 75.5 T 640 -580 q 0 44 -14 83 t -38 69 l 252 252 l -56 56 Z M 380 -400 q 75 0 127.5 -52.5 T 560 -580 q 0 -75 -52.5 -127.5 T 380 -760 q -75 0 -127.5 52.5 T 200 -580 q 0 75 52.5 127.5 T 380 -400 Z"
     />
   </svg>
 )
 
 export const Setting = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
     <path
       fill="currentColor"
-      d="M12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"
+      d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"
+    />
+  </svg>
+)
+
+export const Mail = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
+    <path
+      fill="currentColor"
+      d="M 160 -160 q -33 0 -56.5 -23.5 T 80 -240 v -480 q 0 -33 23.5 -56.5 T 160 -800 h 640 q 33 0 56.5 23.5 T 880 -720 v 480 q 0 33 -23.5 56.5 T 800 -160 H 160 Z m 320 -280 l 320 -200 v -80 L 480 -520 L 160 -720 v 80 l 320 200 Z"
+    />
+  </svg>
+)
+
+export const Bell = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
+    <path
+      fill="currentColor"
+      d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160ZM480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80Z"
     />
   </svg>
 )
