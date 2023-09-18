@@ -1,4 +1,4 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
@@ -29,7 +29,7 @@ interface Props extends StyleProps, MergedHTMLAttributes {
   to?: string
 }
 
-const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
   (
     {
       variant = 'primary',
