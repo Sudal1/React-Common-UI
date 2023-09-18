@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
-type variantType = 'primary' | 'secondary' | 'thrtiary'
+type variantType = 'primary' | 'secondary' | 'tertiary' | 'positive' | 'negative'
 type sizeType = 'sm' | 'md' | 'lg'
 
 type MergedHTMLAttributes = Omit<
@@ -130,7 +130,7 @@ const variantStyle = {
     }
   `,
 
-  thrtiary: css`
+  tertiary: css`
     color: ${colors.gray3};
 
     &:hover {
@@ -142,14 +142,39 @@ const variantStyle = {
       background-color: ${colors.gray1};
     }
   `,
+
+  positive: css`
+    background-color: ${colors.positive};
+    color: #fff;
+
+    &:hover {
+      background-color: ${colors.positiveHover};
+    }
+
+    &:active {
+      background-color: ${colors.positiveActive};
+    }
+  `,
+
+  negative: css`
+    background-color: ${colors.negative};
+    color: #fff;
+
+    &:hover {
+      background-color: ${colors.negativeHover};
+    }
+
+    &:active {
+      background-color: ${colors.negativeActive};
+    }
+  `,
 }
 
 const sizeStyle = {
   sm: css`
     font-size: 1.2rem;
-    padding: 0 1.2rem;
+    padding: 0 0.8rem;
     height: 3.2rem;
-    max-height: 3.2rem;
     svg {
       width: 2rem;
       height: 2rem;
@@ -157,22 +182,21 @@ const sizeStyle = {
   `,
   md: css`
     font-size: 1.4rem;
-    padding: 0 1.6rem;
+    padding: 0 1.2rem;
     height: 4rem;
-    max-height: 4rem;
+
     svg {
-      width: 2.4rem;
-      heigth: 2.4rem;
+      width: 2rem;
+      heigth: 2rem;
     }
   `,
   lg: css`
     font-size: 1.6rem;
-    padding: 0 2.4rem;
+    padding: 0 1.4rem;
     height: 4.8rem;
-    max-height: 4.8rem;
     svg {
-      width: 3.2rem;
-      heigth: 3.2rem;
+      width: 2.4rem;
+      heigth: 2.4rem;
     }
   `,
 }
@@ -183,12 +207,11 @@ const commonStyle = (props: Props) => css`
   align-items: center;
   font-weight: 500;
   border: 0;
-  border-radius: 2.4rem;
+  border-radius: 0.4rem;
   transition: all 0.5s ease;
   cursor: pointer;
   margin-right: 0.8rem;
-  line-height: 1.5;
-  vertical-align: center;
+  box-sizing: border-box;
 
   &:last-child {
     margin: 0;
@@ -222,12 +245,42 @@ const DefaultButton = styled.button<Props>`
   ${(props) => commonStyle(props)}
 `
 
-const LeftIcon = styled.span`
-  margin-right: 0.6rem;
+const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-const RightIcon = styled.span`
-  margin-left: 0.6rem;
+const LeftIcon = styled(Icon)<Props>`
+  ${(props) =>
+    props.size !== 'sm' &&
+    css`
+      margin-left: -0.4rem;
+      margin-right: 0.4rem;
+    `}
+
+  ${(props) =>
+    props.size === 'lg' &&
+    css`
+      margin-left: -0.8rem;
+      margin-right: 0.8rem;
+    `}
+`
+
+const RightIcon = styled(Icon)<Props>`
+  ${(props) =>
+    props.size !== 'sm' &&
+    css`
+      margin-left: 0.4rem;
+      margin-right: -0.4rem;
+    `}
+
+  ${(props) =>
+    props.size === 'lg' &&
+    css`
+      margin-left: 0.8rem;
+      margin-right: -0.8rem;
+    `}
 `
 
 export default Button
