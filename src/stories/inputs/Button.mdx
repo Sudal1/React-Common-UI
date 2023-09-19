@@ -1,3 +1,23 @@
+{/* Button.mdx */}
+
+import {
+  Meta,
+  Canvas,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+} from '@storybook/blocks'
+
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Whole Code
+
+```tsx
 import type { Meta, StoryObj } from '@storybook/react'
 import Button from './Button'
 import { Home, Add, Search, Setting } from '../../icons/Icons'
@@ -132,3 +152,26 @@ export const DisabledButton: Story = {
     return <Button {...args} disabled />
   },
 }
+```
+
+# Default implementation
+
+<Primary />
+
+# Button
+
+<Canvas of={ButtonStories.DefaultButton} />
+
+## Inputs
+
+The component accepts the following inputs (props):
+
+<Controls />
+
+---
+
+## Additional variations
+
+Listed below are additional variations of the component.
+
+<Stories />
