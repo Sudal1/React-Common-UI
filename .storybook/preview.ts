@@ -20,6 +20,13 @@ export const preview: Preview = {
   },
 }
 
+export const parameters = {
+  viewMode: 'docs',
+  previewTabs: {
+    canvas: { hidden: true },
+  },
+}
+
 export const decorators = [
   withThemeFromJSXProvider({
     themes: {

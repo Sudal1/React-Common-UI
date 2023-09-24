@@ -14,6 +14,13 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      toc: { unsafeTocbotOptions: { orderedList: true } },
+    },
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
   },
   argTypes: {
     children: {
@@ -99,11 +106,19 @@ export const Variant: Story = {
   render: (args) => {
     return (
       <>
-        <Button>Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="tertiary">Tertiary</Button>
-        <Button variant="positive">Positive</Button>
-        <Button variant="negative">Negative</Button>
+        <Button {...args}>Primary</Button>
+        <Button {...args} variant="secondary">
+          Secondary
+        </Button>
+        <Button {...args} variant="tertiary">
+          Tertiary
+        </Button>
+        <Button {...args} variant="positive">
+          Positive
+        </Button>
+        <Button {...args} variant="negative">
+          Negative
+        </Button>
       </>
     )
   },
@@ -120,6 +135,11 @@ export const Variant: Story = {
         format: 'dedent',
       },
     },
+    controls: { exclude: ['variant', 'wide', 'children'] },
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
   },
 }
 
@@ -127,9 +147,9 @@ export const Size: Story = {
   render: (args) => {
     return (
       <>
-        <Button size="sm" />
-        <Button size="md" />
-        <Button size="lg" />
+        <Button {...args} size="sm" />
+        <Button {...args} size="md" />
+        <Button {...args} size="lg" />
       </>
     )
   },
@@ -144,24 +164,34 @@ export const Size: Story = {
         format: 'dedent',
       },
     },
+    controls: { exclude: ['size', 'wide'] },
   },
 }
 
 export const LeftIconButton: Story = {
   render: (args) => {
-    return <Button leftIcon={<Search />} />
+    return <Button {...args} leftIcon={<Search />} />
+  },
+  parameters: {
+    controls: { exclude: ['leftIcon', 'rightIcon'] },
   },
 }
 
 export const RightIconButton: Story = {
   render: (args) => {
-    return <Button rightIcon={<Add />} />
+    return <Button {...args} rightIcon={<Setting />} />
+  },
+  parameters: {
+    controls: { exclude: ['leftIcon', 'rightIcon'] },
   },
 }
 
 export const WideButton: Story = {
   render: (args) => {
-    return <Button wide />
+    return <Button {...args} wide />
+  },
+  parameters: {
+    controls: { exclude: ['wide'] },
   },
 }
 
@@ -169,17 +199,19 @@ export const DisabledButton: Story = {
   render: (args) => {
     return (
       <>
-        <Button disabled>Primary</Button>
-        <Button variant="secondary" disabled>
+        <Button {...args} disabled>
+          Primary
+        </Button>
+        <Button {...args} variant="secondary" disabled>
           Secondary
         </Button>
-        <Button variant="tertiary" disabled>
+        <Button {...args} variant="tertiary" disabled>
           Tertiary
         </Button>
-        <Button variant="positive" disabled>
+        <Button {...args} variant="positive" disabled>
           positive
         </Button>
-        <Button variant="negative" disabled>
+        <Button {...args} variant="negative" disabled>
           negative
         </Button>
       </>
@@ -198,5 +230,6 @@ export const DisabledButton: Story = {
         format: 'dedent',
       },
     },
+    controls: { exclude: ['variant', 'disabled', 'children'] },
   },
 }

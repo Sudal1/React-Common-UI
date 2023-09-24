@@ -9,21 +9,31 @@ import {
   Primary,
   Controls,
   Stories,
+  Story,
+  Source,
 } from '@storybook/blocks'
 
 import * as ButtonStories from './Button.stories'
 import Button from './Button'
 
-<Meta of={ButtonStories} />
+<Meta title="Documentation" of={ButtonStories} />
 
 # Overview
 
+---
+
 <Primary />
 
-## Controls
+# Props
+
+---
 
 <Controls />
 
-### Stories
+# Example
 
-<Stories />
+---
+
+## Variant
+
+<Canvas of={ButtonStories.Variant} />
