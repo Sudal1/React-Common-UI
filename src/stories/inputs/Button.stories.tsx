@@ -14,13 +14,6 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      toc: { unsafeTocbotOptions: { orderedList: true } },
-    },
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true },
-    },
   },
   argTypes: {
     children: {

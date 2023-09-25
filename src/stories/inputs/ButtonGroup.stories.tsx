@@ -8,10 +8,6 @@ const meta = {
   component: ButtonGroup,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      toc: true,
-    },
-    viewMode: 'docs',
   },
   args: {
     children: 'Button Text',
