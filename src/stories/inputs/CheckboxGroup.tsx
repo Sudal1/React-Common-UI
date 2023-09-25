@@ -2,13 +2,20 @@ import styled from '@emotion/styled'
 import CheckboxContext from 'context/checkboxGroup'
 
 interface Props {
+  label: string
   selectedValues: (string | number)[]
   groupDisabled?: boolean
   children: React.ReactNode
   onChange(values: (string | number)[]): void
 }
 
-const CheckboxGroup = ({ selectedValues, groupDisabled = false, children, onChange }: Props) => {
+const CheckboxGroup = ({
+  label,
+  selectedValues,
+  groupDisabled = false,
+  children,
+  onChange,
+}: Props) => {
   const isChecked = (value: string | number) => selectedValues.includes(value)
 
   const isDisabled = (disabled?: boolean) => disabled || groupDisabled
@@ -23,6 +30,7 @@ const CheckboxGroup = ({ selectedValues, groupDisabled = false, children, onChan
 
   return (
     <StyledFieldset>
+      <StyledLabel>{label}</StyledLabel>
       <CheckboxContext.Provider value={{ isChecked, isDisabled, handleChange }}>
         {children}
       </CheckboxContext.Provider>
@@ -30,6 +38,13 @@ const CheckboxGroup = ({ selectedValues, groupDisabled = false, children, onChan
   )
 }
 
-const StyledFieldset = styled.fieldset``
+const StyledFieldset = styled.fieldset`
+  
+`
+
+const StyledLabel = styled.legend`
+  font-size: 1.6rem;
+  font-weight: 500;
+`
 
 export default CheckboxGroup
