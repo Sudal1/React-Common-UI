@@ -35,6 +35,7 @@ const meta = {
     wide: {
       control: 'boolean',
     },
+    onClick: { action: 'clicked' },
     disabled: {
       control: 'boolean',
     },
@@ -65,6 +66,7 @@ const meta = {
       },
     },
   },
+  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <div style={{ display: 'flex', padding: '2.4rem' }}>
@@ -129,10 +131,6 @@ export const Variant: Story = {
       },
     },
     controls: { exclude: ['variant', 'wide', 'children'] },
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true },
-    },
   },
 }
 

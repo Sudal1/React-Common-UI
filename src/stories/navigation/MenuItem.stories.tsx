@@ -45,6 +45,7 @@ const meta = {
         type: 'boolean',
       },
     },
+    onClick: { action: 'clicked' },
   },
   decorators: [
     (Story) => (
