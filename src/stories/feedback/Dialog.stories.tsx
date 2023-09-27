@@ -34,7 +34,7 @@ const Template: Story = {
     const dummyConfig = {
       title: 'Do you like Storybook?',
       description: 'Please log in to leave a review.',
-      confirmText: 'Log in',
+      confirmText: 'Login',
       onConfirm: () => {
         alert('Go to Log-in!')
         handleClose()

@@ -31,6 +31,18 @@ const variantStyle = {
     a {
       border: 1px solid ${colors.primaryLight};
       margin-right: -0.1rem;
+
+      color: ${colors.primary};
+
+      &:hover {
+        background-color: ${colors.primaryHoverLight};
+        color: ${colors.primaryActive};
+      }
+
+      &:active {
+        background-color: ${colors.primaryActiveLight};
+        color: ${colors.primaryActive};
+      }
     }
   `,
 
@@ -74,17 +86,6 @@ const commonStyle = (props: Props) => css`
     & > button,
     a {
       background: #fff;
-      color: ${colors.primary};
-
-      &:hover {
-        background-color: ${colors.primaryHoverLight};
-        color: ${colors.primaryActive};
-      }
-
-      &:active {
-        background-color: ${colors.primaryActiveLight};
-        color: ${colors.primaryActive};
-      }
     }
   `}
 

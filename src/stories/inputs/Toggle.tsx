@@ -78,6 +78,7 @@ const StyledLabel = styled.label<{ disabled?: boolean }>`
     css`
       opacity: 0.4;
       filter: grayscale(0.7);
+      cursor: not-allowed;
     `}
 `
 

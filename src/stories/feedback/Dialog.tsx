@@ -46,7 +46,7 @@ const Dialog = ({
 
 const StyledModal = styled(Modal)`
   width: 32rem;
-  padding: 2.4rem 1.6rem 2.4rem 1.6rem;
+  padding: 2.4rem;
 `
 
 const Title = styled.h2`
@@ -54,6 +54,7 @@ const Title = styled.h2`
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.5;
+  white-space: pre-wrap;
   color: ${colors.gray5};
 `
 

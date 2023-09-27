@@ -16,10 +16,16 @@ const Modal = ({ visible, className, children }: Props) => {
         <AnimatePresence>
           {visible && (
             <Block
-              initial={{ y: '30vh', opacity: 0 }}
-              animate={{ y: '0vh', opacity: 1 }}
-              exit={{ y: '30vh', opacity: 0 }}
-              transition={{ type: 'spring', bounce: 0.33 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.8, ease: [0, 0.71, 0.2, 1.01] },
+              }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.3 },
+              }}
               className={className}
             >
               {children}
@@ -40,6 +46,8 @@ const Block = styled(motion.div)`
   background: #fff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
   border-radius: 0.4rem;
+  position: relative;
+  z-index: 999;
 `
 
 export default Modal

@@ -229,6 +229,7 @@ const commonStyle = (props: Props) => css`
   css`
     opacity: 0.4;
     filter: grayscale(0.7);
+    cursor: not-allowed;
   `}
 `
 

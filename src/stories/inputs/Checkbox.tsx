@@ -22,7 +22,7 @@ const Checkbox = ({
   onChange,
 }: Props) => {
   const context = useContext(CheckboxContext)
-  
+
   if (context === null) {
     return (
       <StyledLabel disabled={disabled}>
@@ -89,6 +89,7 @@ const StyledLabel = styled.label<{ disabled?: boolean }>`
     css`
       opacity: 0.4;
       filter: grayscale(0.7);
+      cursor: not-allowed;
     `}
 `
 

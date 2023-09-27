@@ -13,7 +13,7 @@ const Overlay = ({ visible, onClick }: Props) => {
       {visible && (
         <Fill
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 0.7 }}
           exit={{ opacity: 0 }}
           onClick={onClick}
         />

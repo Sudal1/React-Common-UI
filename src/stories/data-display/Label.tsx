@@ -30,6 +30,7 @@ const variantStyle = {
   `,
   tertiary: css`
     color: ${colors.gray3};
+    border: 1px solid ${colors.gray2};
   `,
   positive: css`
     background-color: ${colors.positive};

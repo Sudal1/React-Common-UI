@@ -12,6 +12,17 @@ const meta = {
   args: {
     children: 'Button Text',
   },
+  argTypes: {
+    children: {
+      control: 'text',
+    },
+    variant: {
+      options: ['primary', 'secondary', 'tertiary'],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <div style={{ padding: '2.4rem' }}>
@@ -26,9 +37,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const DefaultButtonGroup: Story = {
-  render: () => {
+  render: (args) => {
     return (
-      <ButtonGroup>
+      <ButtonGroup {...args}>
         <Button>Button 1</Button>
         <Button href="https://naver.com" target="_blank">
           Link Button
