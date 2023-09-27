@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
 import Button from 'stories/inputs/Button'
 import { css } from '@emotion/react'
+import { useClickOutside } from 'hooks/useClickOutside'
 
 type Position = 'top-start' | 'top' | 'top-end' | 'bottom-start' | 'bottom' | 'bottom-end'
 
 interface PopperProps {
   position: Position
-
+  children: React.ReactNode
   buttonTop: number
   buttonLeft: number
   buttonWidth: number
@@ -16,67 +17,60 @@ interface PopperProps {
 }
 
 interface PopperMenuProps {
-  visible: boolean
   position: Position
+  visible: boolean
+  buttonChildren: React.ReactNode
+  children: React.ReactNode
   onClick(): void
 }
 
-const Popper = ({ position, ...rest }: PopperProps) => {
-  const popperDivRef = useRef<HTMLDivElement | null>(null)
-  const [offsetHeight, setOffsetHeight] = useState<number>(0)
+const Popper = forwardRef<HTMLDivElement, PopperProps>(
+  ({ position, children, ...rest }: PopperProps, ref: any) => {
+    const POPPER_WIDTH = 400
+    const { buttonTop, buttonLeft, buttonWidth, buttonHeight } = rest
 
-  useEffect(() => {
-    const popperMenu = popperDivRef.current
-    if (popperMenu) {
-      setOffsetHeight(popperMenu.offsetHeight)
+    let horizonPos = buttonLeft
+    const verticalPos = buttonHeight + buttonTop
+
+    if (['top', 'bottom'].includes(position)) {
+      horizonPos = horizonPos + buttonWidth / 2 - POPPER_WIDTH / 2 // center
     }
-  }, [])
 
-  const POPPER_WIDTH = 400
-  const { buttonTop, buttonLeft, buttonWidth, buttonHeight } = rest
-  let top = buttonHeight + buttonTop
-  let left = buttonLeft
-  let right = buttonLeft + POPPER_WIDTH
-
-  if (position.startsWith('top')) {
-    top = buttonTop - offsetHeight
+    return (
+      <Positioner
+        ref={ref}
+        width={POPPER_WIDTH}
+        position={position}
+        horizonPos={horizonPos}
+        verticalPos={verticalPos}
+      >
+        {children}
+      </Positioner>
+    )
   }
-  if (['top', 'bottom'].includes(position)) {
-    left = left + buttonWidth / 2 - POPPER_WIDTH / 2 // center
-  } else if (position.endsWith('start')) {
-    left = buttonLeft
-  } else {
-    right = 0
-  }
+)
 
-  return (
-    <Positioner ref={popperDivRef} top={top} left={left} right={right} width={POPPER_WIDTH}>
-      <ul>
-        <li>this is test!~</li>
-        <li>This is Test!~</li>
-        <li>this is also test!~</li>
-      </ul>
-    </Positioner>
-  )
-}
+Popper.displayName = 'Popper'
 
-const PopperMenu = ({ visible, position, onClick }: PopperMenuProps) => {
+const PopperMenu = ({ visible, position, buttonChildren, children, onClick }: PopperMenuProps) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null)
+  const popperRef = useRef<HTMLDivElement | null>(null)
+  useClickOutside([popperRef, buttonRef], onClick, [visible])
 
   const [offsetTop, setOffsetTop] = useState(0)
   const [offsetLeft, setOffsetLeft] = useState(0)
   const [offsetWidth, setOffsetWidth] = useState(0)
   const [offsetHeight, setOffsetHeight] = useState(0)
 
-  const updateLayout = () => {
+  const updateLayout = useCallback(() => {
     const buttonElement = buttonRef.current
     if (buttonElement) {
       setOffsetTop(buttonElement.offsetTop)
       setOffsetLeft(buttonElement.offsetLeft)
-      setOffsetHeight(buttonElement.offsetHeight)
       setOffsetWidth(buttonElement.offsetWidth)
+      setOffsetHeight(buttonElement.offsetHeight)
     }
-  }
+  }, [])
 
   useEffect(() => {
     updateLayout()
@@ -89,53 +83,65 @@ const PopperMenu = ({ visible, position, onClick }: PopperMenuProps) => {
 
   return (
     <Container>
-      <StyledDiv width={offsetWidth} height={offsetHeight}>
-        <Button ref={buttonRef} onClick={onClick}></Button>
-
+      <Relative width={offsetWidth} height={offsetHeight}>
+        <Button ref={buttonRef} onClick={onClick}>
+          {buttonChildren}
+        </Button>
         {visible && (
           <Popper
+            ref={popperRef}
             position={position}
             buttonTop={offsetTop}
             buttonLeft={offsetLeft}
             buttonWidth={offsetWidth}
             buttonHeight={offsetHeight}
-          ></Popper>
+          >
+            {children}
+          </Popper>
         )}
-      </StyledDiv>
+      </Relative>
     </Container>
   )
 }
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
 `
 
-const StyledDiv = styled.div<{ width: number; height: number }>`
-  max-width: ${({ width }) => width + 1}px;
+const Relative = styled.div<{ width: number; height: number }>`
+  display: inline-flex;
+  position: relative;
   height: ${({ height }) => height}px;
   overflow: visible;
-
-  position: relative;
-  border: 1px solid red;
 `
 
 const Positioner = styled.div<{
+  position: Position
   width: number
-  top: number
-  left: number
-  right: number
+  verticalPos: number
+  horizonPos: number
 }>`
   position: absolute;
-  width: 40rem;
-  top: ${({ top }) => top}px;
+  width: ${({ width }) => width}px;
 
-  ${({ left, right }) =>
-    right !== 0
+  ${({ position, verticalPos }) =>
+    position.startsWith('top')
       ? css`
-          left: ${left}px;
+          bottom: ${verticalPos}px;
         `
       : css`
+          top: ${verticalPos}px;
+        `}
+
+  ${({ position, horizonPos }) =>
+    position.endsWith('end')
+      ? css`
           right: 0;
+        `
+      : css`
+          left: ${horizonPos}px;
         `}
 
   background: #fff;

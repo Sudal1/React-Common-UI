@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
 import PopperMenu from './PopperMenu'
+import MenuItem from 'stories/navigation/MenuItem'
+import { Home, Add, Search } from '../../lib/icons'
 
 const meta = {
   title: 'Feedback/PopperMenu',
@@ -30,18 +32,37 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const Template: Story = {
-  render: ({ visible, position }) => {
+  render: ({ position, visible, buttonChildren, children }) => {
     const [_, updateArgs] = useArgs<{ visible: boolean }>()
 
     const handleClose = () => {
       updateArgs({ visible: !visible })
     }
 
-    return <PopperMenu visible={visible} position={position} onClick={handleClose} />
+    return (
+      <PopperMenu
+        position={position}
+        visible={visible}
+        buttonChildren={buttonChildren}
+        onClick={handleClose}
+      >
+        {children}
+      </PopperMenu>
+    )
   },
   args: {
     visible: false,
-    position: 'bottom-end',
+    position: 'top',
+    buttonChildren: 'Click me!',
+    children: [
+      { key: 1, icon: <Home />, children: 'First item!' },
+      { key: 2, icon: <Add />, children: 'Second item!' },
+      { key: 3, icon: <Search />, children: 'Last item!' },
+    ].map((item) => (
+      <MenuItem key={item.key} icon={item.icon}>
+        {item.children}
+      </MenuItem>
+    )),
   },
 }
 
