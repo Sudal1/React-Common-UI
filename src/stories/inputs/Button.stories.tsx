@@ -69,7 +69,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ display: 'flex', padding: '2.4rem' }}>
+      <div style={{ display: 'flex', padding: '2.4rem', gap: '1.2rem' }}>
         <Story />
       </div>
     ),

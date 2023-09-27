@@ -210,12 +210,7 @@ const commonStyle = (props: Props) => css`
   border-radius: 0.4rem;
   transition: all 0.5s ease;
   cursor: pointer;
-  margin-right: 0.8rem;
-  box-sizing: border-box;
-
-  &:last-child {
-    margin: 0;
-  }
+  box-sizing: content-box;
 
   ${sizeStyle[props.size!]}
   ${variantStyle[props.variant!]}

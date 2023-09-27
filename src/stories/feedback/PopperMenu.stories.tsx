@@ -8,9 +8,17 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
+  argTypes: {
+    position: {
+      options: ['top-start', 'top', 'top-end', 'bottom-start', 'bottom', 'bottom-end'],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
   decorators: [
     (Story) => (
-      <div style={{ padding: '2.4rem' }}>
+      <div style={{ minHeight: '60rem', padding: '30rem' }}>
         <Story />
       </div>
     ),
@@ -33,7 +41,7 @@ const Template: Story = {
   },
   args: {
     visible: false,
-    position: 'end',
+    position: 'bottom-end',
   },
 }
 
