@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RecoilRoot } from 'recoil'
 import './index.css'
 import App from './App'
-import Global from './css/reset'
+import Global from './lib/reset'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

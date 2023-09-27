@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import MenuItem from './MenuItem'
-import { Home, Add, Search, Setting } from '../../icons/Icons'
+import { Home, Add, Search, Setting } from '../../lib/icons'
 
 const Icons = {
   Home: <Home />,

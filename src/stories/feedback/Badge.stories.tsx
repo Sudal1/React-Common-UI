@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Badge from './Badge'
 import Button from '../inputs/Button'
-import { Mail, Bell } from '../../icons/Icons'
+import { Mail, Bell } from '../../lib/icons'
 
 const meta = {
   title: 'Feedback/Badge',
