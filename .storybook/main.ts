@@ -7,13 +7,12 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-styling',
     '@storybook/addon-interactions',
+    '@storybook/addon-mdx-gfm',
     '@storybook/preset-create-react-app',
   ],
   framework: {
     name: '@storybook/react-webpack5',
-    options: {
-      legacyRootApi: true,
-    },
+    options: {},
   },
   docs: {
     autodocs: 'tag',
