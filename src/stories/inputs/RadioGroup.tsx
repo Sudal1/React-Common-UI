@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import styled from '@emotion/styled'
-import RadioContext from 'context/radioGroup'
+import RadioContext from 'contexts/radioGroup'
 
 interface Props {
   selectedValue?: string | number

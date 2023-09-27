@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import CheckboxContext from 'context/checkboxGroup'
+import CheckboxContext from 'contexts/checkboxGroup'
 
 interface Props {
   label: string
@@ -38,9 +38,7 @@ const CheckboxGroup = ({
   )
 }
 
-const StyledFieldset = styled.fieldset`
-  
-`
+const StyledFieldset = styled.fieldset``
 
 const StyledLabel = styled.legend`
   font-size: 1.6rem;

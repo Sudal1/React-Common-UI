@@ -2,7 +2,7 @@ import { type ReactNode, type ChangeEvent, useContext } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
-import CheckboxContext from 'context/checkboxGroup'
+import CheckboxContext from 'contexts/checkboxGroup'
 
 interface Props {
   value: string | number

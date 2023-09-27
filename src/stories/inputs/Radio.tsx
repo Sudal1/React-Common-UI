@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
-import RadioContext from 'context/radioGroup'
+import RadioContext from 'contexts/radioGroup'
 
 interface Props {
   value: string | number
