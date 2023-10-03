@@ -124,7 +124,7 @@ export const DefaultIconToggleButton: Story = {
     docs: {
       source: {
         code: `<IconToggleButton activeIcon={<fillHeart />} inactiveIcon={<outlineHeart />} />
-        
+
         defulat props { size: 'md', color: 'primary', disable: false }
         require props { activeIcon, inactiveIcon }
         `,
@@ -138,12 +138,10 @@ export const LikeButtonExample: Story = {
   render: (args) => {
     return (
       <>
-        <>
-          <IconToggleButton {...args} color="liked" /> state: inacitve
-        </>
-        <>
-          <IconToggleButton {...args} color="liked" isActive /> state: active
-        </>
+        <IconToggleButton {...args} color="liked" />
+        isAcitve: false
+        <IconToggleButton {...args} color="liked" isActive />
+        isAcitve: true
       </>
     )
   },
@@ -159,6 +157,41 @@ export const LikeButtonExample: Story = {
       },
     },
     controls: { include: ['size'] },
+  },
+}
+
+export const BookmarkButtonExample: Story = {
+  render: (args) => {
+    return (
+      <>
+        <IconToggleButton
+          {...args}
+          activeIcon={<FillBookmark />}
+          inactiveIcon={<OutlineBookmark />}
+        />
+        isAcitve: false
+        <IconToggleButton
+          {...args}
+          activeIcon={<FillBookmark />}
+          inactiveIcon={<OutlineBookmark />}
+          isActive
+        />
+        isAcitve: true
+      </>
+    )
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<IconToggleButton activeIcon={<FillBookmark />} inactiveIcon={<OutlineBookmark />} />
+      
+      // The icon provided in the code is an example code. 
+      // Please! import the icon you are using and pass it to activeIcon and inactiveIcon PROPS.
+      `,
+        format: 'dedent',
+      },
+    },
+    controls: { include: ['size', 'disable'] },
   },
 }
 
@@ -219,7 +252,7 @@ export const FeedbackButtonOtherExample: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<IconToggleButton activeIcon={<FillSmile />} inactiveIcon={<OutlineSmile />}/>i like it!
+        code: `<IconToggleButton activeIcon={<FillSmile />} inactiveIcon={<OutlineSmile />} />i like it!
       <IconToggleButton activeIcon={<FillFrown />} inactiveIcon={<OutlineFrown />} />i hate it!
       
       // The icon provided in the code is an example code. 
