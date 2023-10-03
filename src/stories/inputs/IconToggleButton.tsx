@@ -11,8 +11,8 @@ interface Props {
   inactiveIcon: React.ReactNode
   activeIcon: React.ReactNode
   isActive?: boolean
-  onClick?(): void
   disabled?: boolean
+  onClick?(): void
 }
 
 function IconToggleButton({
@@ -21,8 +21,8 @@ function IconToggleButton({
   isActive,
   inactiveIcon,
   activeIcon,
-  onClick,
   disabled = false,
+  onClick,
 }: Props) {
   return (
     <StyledButton onClick={onClick} size={size} disabled={disabled}>
@@ -65,6 +65,7 @@ const colorStyle = {
 }
 
 const StyledButton = styled.button<{ size: SizeType; disabled: boolean }>`
+  display: flex;
   position: relative;
   padding: 0;
   border: none;

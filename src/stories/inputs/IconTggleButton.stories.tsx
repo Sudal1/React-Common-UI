@@ -91,28 +91,143 @@ const meta = {
       control: 'boolean',
     },
   },
+  args: {
+    activeIcon: <FillHeart />,
+    inactiveIcon: <OutlineHeart />,
+  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: 'flex',
+          padding: '2.4rem',
+          gap: '0.6rem',
+          alignItems: 'center',
+          fontSize: '1.4rem',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
 } satisfies Meta<typeof IconToggleButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template: Story = {
-  render: ({ ...args }) => {
-    const [_, updateArgs] = useArgs()
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      updateArgs({ checked: event.target.checked })
-    }
-
+export const DefaultIconToggleButton: Story = {
+  render: (args) => {
     return <IconToggleButton {...args} />
   },
-  args: {
-    activeIcon: <FillHeart />,
-    inactiveIcon: <OutlineHeart />,
+  parameters: {
+    docs: {
+      source: {
+        code: `<IconToggleButton activeIcon={<fillHeart />} inactiveIcon={<outlineHeart />} />
+        
+        defulat props { size: 'md', color: 'primary', disable: false }
+        require props { activeIcon, inactiveIcon }
+        `,
+        format: 'dedent',
+      },
+    },
   },
 }
 
-export const DefaultIconToggleButton: Story = {
-  ...Template,
+export const LikeButtonExample: Story = {
+  render: (args) => {
+    return (
+      <>
+        <>
+          <IconToggleButton {...args} color="liked" /> state: inacitve
+        </>
+        <>
+          <IconToggleButton {...args} color="liked" isActive /> state: active
+        </>
+      </>
+    )
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<IconToggleButton activeIcon={<fillHeart />} inactiveIcon={<outlineHeart />} color="liked" />
+
+        // The icon provided in the code is an example code. 
+        // Please! import the icon you are using and pass it to activeIcon and inactiveIcon PROPS.
+        `,
+        format: 'dedent',
+      },
+    },
+    controls: { include: ['size'] },
+  },
+}
+
+export const FeedbackButtonExample: Story = {
+  render: (args) => {
+    return (
+      <>
+        <IconToggleButton
+          {...args}
+          activeIcon={<FillThumUp />}
+          inactiveIcon={<OutlineThumUp />}
+          color="positive"
+          isActive
+        />
+        I'd recommend
+        <IconToggleButton
+          {...args}
+          activeIcon={<FillThumDown />}
+          inactiveIcon={<OutlineThumDown />}
+          color="negative"
+        />
+        I don't recommend it.
+      </>
+    )
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<IconToggleButton activeIcon={<FillThumUp />} inactiveIcon={<OutlineThumUp />} color="positive" /> I'd recommend
+      <IconToggleButton activeIcon={<FillThumDown />} inactiveIcon={<OutlineThumDown />} color="negative"/> I don't recommend it.
+      
+      // The icon provided in the code is an example code. 
+      // Please! import the icon you are using and pass it to activeIcon and inactiveIcon PROPS.
+        `,
+        format: 'dedent',
+      },
+    },
+    controls: { include: ['size', 'disable'] },
+  },
+}
+
+export const FeedbackButtonOtherExample: Story = {
+  render: (args) => {
+    return (
+      <>
+        <IconToggleButton
+          {...args}
+          activeIcon={<FillSmile />}
+          inactiveIcon={<OutlineSmile />}
+          isActive
+        />
+        i like it!
+        <IconToggleButton {...args} activeIcon={<FillFrown />} inactiveIcon={<OutlineFrown />} />i
+        hate it!
+      </>
+    )
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<IconToggleButton activeIcon={<FillSmile />} inactiveIcon={<OutlineSmile />}/>i like it!
+      <IconToggleButton activeIcon={<FillFrown />} inactiveIcon={<OutlineFrown />} />i hate it!
+      
+      // The icon provided in the code is an example code. 
+      // Please! import the icon you are using and pass it to activeIcon and inactiveIcon PROPS.
+        `,
+        format: 'dedent',
+      },
+    },
+    controls: { include: ['size', 'disable'] },
+  },
 }
