@@ -22,4 +22,5 @@ export const colors = {
   warning: '#edba95',
   error: '#e23636',
   notification: '#FA3E3E',
+  liked: '#ee5f7b',
 }

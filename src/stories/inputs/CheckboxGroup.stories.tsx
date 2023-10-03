@@ -58,6 +58,6 @@ const Template: Story = {
   },
 }
 
-export const DefaultCheckbox: Story = {
+export const DefaultCheckboxGroup: Story = {
   ...Template,
 }

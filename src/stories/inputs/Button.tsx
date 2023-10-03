@@ -132,6 +132,7 @@ const variantStyle = {
 
   tertiary: css`
     color: ${colors.gray3};
+    background: none;
 
     &:hover {
       background-color: ${colors.gray0};
