@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/client-api'
+import { useArgs } from '@storybook/preview-api'
 import IconToggleButton from './IconToggleButton'
 
 import {
@@ -59,14 +59,7 @@ const meta = {
       mapping: activeIcons,
       control: {
         type: 'select',
-        labels: {
-          FillHeart: 'Heart',
-          FillThumUp: 'ThumUp',
-          FillThumDown: 'ThumDown',
-          FillSmile: 'Smile',
-          FillFrown: 'Frown',
-          FillBookmark: 'Bookmark',
-        },
+        labels: Object.entries(activeIcons),
       },
     },
     inactiveIcon: {
@@ -74,14 +67,7 @@ const meta = {
       mapping: inactiveIcons,
       control: {
         type: 'select',
-        labels: {
-          OutlineHeart: 'Heart',
-          OutlineThumUp: 'ThumUp',
-          OutlineThumDown: 'ThumDown',
-          OutlineSmile: 'Smile',
-          OutlineFrown: 'Frown',
-          OutlineBookmark: 'Bookmark',
-        },
+        labels: Object.entries(inactiveIcons),
       },
     },
     isActive: {
@@ -116,17 +102,51 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const Template: Story = {
+  render: ({ isActive, onClick, ...rest }) => {
+    const [_, updateIsActive] = useArgs<{ isActive: boolean }>()
+
+    const handleClick = () => {
+      updateIsActive({ isActive: !isActive })
+    }
+
+    return (
+      <>
+        <IconToggleButton isActive={isActive} onClick={handleClick} {...rest} />
+        {`isActive: ${isActive}`}
+        <IconToggleButton isActive={!isActive} onClick={handleClick} {...rest} />
+        {`isActive: ${!isActive}`}
+      </>
+    )
+  },
+  args: {
+    isActive: false,
+    color: 'liked',
+  },
+}
+
 export const DefaultIconToggleButton: Story = {
-  render: (args) => {
-    return <IconToggleButton {...args} />
+  render: ({ isActive, onClick, ...rest }) => {
+    const [_, updateArgs] = useArgs<{ isActive: boolean }>()
+
+    const handleClick = () => {
+      updateArgs({ isActive: !isActive })
+    }
+
+    return <IconToggleButton isActive={isActive} onClick={handleClick} {...rest} />
   },
   parameters: {
     docs: {
       source: {
         code: `<IconToggleButton activeIcon={<fillHeart />} inactiveIcon={<outlineHeart />} />
 
-        defulat props { size: 'md', color: 'primary', disable: false }
-        require props { activeIcon, inactiveIcon }
+        /**
+         * Require props
+         * @prop { activeIcon, inactiveIcon }
+         *
+         * Default props
+         * @prop { size: 'md', color: 'primary', disabled: false }
+         */
         `,
         format: 'dedent',
       },
