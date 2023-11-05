@@ -23,18 +23,18 @@ const Chip = ({
   ...rest
 }: Props) => {
   return (
-    <StyledChip size={size} isActive={isActive} readOnly={readOnly}>
-      <StyledClick onClick={onClick}>
+    <Container size={size} isActive={isActive} readOnly={readOnly}>
+      <StyledDiv onClick={onClick}>
         {leftIcon && <StyledLeftIcon>{leftIcon}</StyledLeftIcon>}
         {rest.children}
-      </StyledClick>
+      </StyledDiv>
 
       {!readOnly && (
         <StyledClose isActive={isActive} onClick={onRomove}>
           <Close />
         </StyledClose>
       )}
-    </StyledChip>
+    </Container>
   )
 }
 
@@ -59,28 +59,28 @@ const sizeStyle = {
   `,
 }
 
-const stateColorStyle = {
+const colorStyle = {
   active: css`
-    &:active {
+    &:not(:has(button:active)):active {
       background: ${colors.primaryActive};
     }
 
-    &:hover {
+    &:not(:has(button:hover)):hover {
       background: ${colors.primaryHover};
     }
   `,
   default: css`
-    &:active {
+    &:not(:has(button:active)):active {
       background: ${colors.primaryActiveLight};
     }
 
-    &:hover {
+    &:not(:has(button:hover)):hover {
       filter: brightness(0.95);
     }
   `,
 }
 
-const StyledChip = styled.div<Props>`
+const Container = styled.div<Props>`
   width: fit-content;
   display: flex;
   align-items: center;
@@ -91,7 +91,6 @@ const StyledChip = styled.div<Props>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  pointer-events: none;
 
   &:last-child {
     margin: 0;
@@ -101,12 +100,11 @@ const StyledChip = styled.div<Props>`
   color: ${(props) => (props.isActive ? `white` : `${colors.gray5}`)};
 
   ${(props) => sizeStyle[props.size!]}
-  ${(props) => !props.readOnly && stateColorStyle[props.isActive ? 'active' : 'default']}
+  ${(props) => !props.readOnly && colorStyle[props.isActive ? 'active' : 'default']}
 `
 
-const StyledClick = styled.div`
+const StyledDiv = styled.div`
   padding: 0 0.8rem;
-  pointer-events: auto;
 
   ${(props) =>
     props.onClick &&
@@ -126,7 +124,6 @@ const StyledClose = styled.button<Props>`
   padding: 0.2rem 0.2rem 0;
   border-radius: 0.4rem;
   border: 0;
-  pointer-events: auto;
 
   background: ${(props) => (props.isActive ? `${colors.primary}` : `${colors.primaryHoverLight}`)};
 
