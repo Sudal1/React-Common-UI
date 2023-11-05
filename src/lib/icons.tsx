@@ -48,6 +48,15 @@ export const Bell = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
+export const Close = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
+    <path
+      fill="currentColor"
+      d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+    />
+  </svg>
+)
+
 export const FillHeart = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="none" {...props}>
     <path

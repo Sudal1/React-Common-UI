@@ -57,7 +57,7 @@ const Radio = ({
 
 const StyledRadio = styled.input`
   appearance: none;
-  margin: 0 1.2rem 0 0;
+  margin: 0 0.8rem 0 0;
   width: 2rem;
   height: 2rem;
   border: 0.2rem solid ${colors.gray1};

@@ -24,6 +24,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:storybook/recommended',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
   plugins: ['@typescript-eslint', 'prettier', 'react', '@emotion'],
   settings: { react: { version: 'detect' } },

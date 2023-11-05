@@ -26,7 +26,7 @@ interface PopperMenuProps {
 
 const Popper = forwardRef<HTMLDivElement, PopperProps>(
   ({ position, children, ...rest }: PopperProps, ref: any) => {
-    const POPPER_WIDTH = 400
+    const POPPER_WIDTH = 300
     const { buttonTop, buttonLeft, buttonWidth, buttonHeight } = rest
 
     let horizonPos = buttonLeft
@@ -130,9 +130,11 @@ const Positioner = styled.div<{
     position.startsWith('top')
       ? css`
           bottom: ${verticalPos}px;
+          margin-bottom: 1.6rem;
         `
       : css`
           top: ${verticalPos}px;
+          margin-top: 1.6rem;
         `}
 
   ${({ position, horizonPos }) =>
@@ -143,9 +145,10 @@ const Positioner = styled.div<{
       : css`
           left: ${horizonPos}px;
         `}
-
   background: #fff;
-  border: 0.2rem solid ${colors.gray1};
+  box-shadow:
+    rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.24) 0px 2px 16px 0px;
   border-radius: 0.4rem;
   z-index: 10;
 `

@@ -138,9 +138,15 @@ export const Size: Story = {
   render: (args) => {
     return (
       <>
-        <Button {...args} size="sm" />
-        <Button {...args} size="md" />
-        <Button {...args} size="lg" />
+        <Button {...args} size="sm">
+          Small Button
+        </Button>
+        <Button {...args} size="md">
+          Medium Button
+        </Button>
+        <Button {...args} size="lg">
+          Large Button
+        </Button>
       </>
     )
   },

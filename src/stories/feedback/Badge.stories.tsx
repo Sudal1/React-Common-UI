@@ -31,6 +31,18 @@ export const DefaultBadge: Story = {
       </Badge>
     )
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Badge>
+           <Button size="sm">Primary</Button>
+        </Badge>
+        `,
+        format: 'dedent',
+      },
+    },
+  },
 }
 
 export const BadgeWithIconButton: Story = {
