@@ -40,12 +40,7 @@ const Template: Story = {
     }
 
     return (
-      <PopperMenu
-        position={position}
-        visible={visible}
-        buttonChildren={buttonChildren}
-        onClick={handleClose}
-      >
+      <PopperMenu position={position} visible={visible} buttonChildren={buttonChildren} onClick={handleClose}>
         {children}
       </PopperMenu>
     )
@@ -59,7 +54,7 @@ const Template: Story = {
       { key: 2, icon: <Add />, children: 'Second item!' },
       { key: 3, icon: <Search />, children: 'Last item!' },
     ].map((item) => (
-      <MenuItem key={item.key} icon={item.icon}>
+      <MenuItem key={item.key} icon={item.icon} size="sm">
         {item.children}
       </MenuItem>
     )),
