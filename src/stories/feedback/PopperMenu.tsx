@@ -26,7 +26,7 @@ interface PopperMenuProps {
 
 const Popper = forwardRef<HTMLDivElement, PopperProps>(
   ({ position, children, ...rest }: PopperProps, ref: any) => {
-    const POPPER_WIDTH = 300
+    const POPPER_WIDTH = 200
     const { buttonTop, buttonLeft, buttonWidth, buttonHeight } = rest
 
     let horizonPos = buttonLeft

@@ -100,7 +100,7 @@ const Container = styled.div<Props>`
   color: ${(props) => (props.isActive ? `white` : `${colors.gray5}`)};
 
   ${(props) => sizeStyle[props.size!]}
-  ${(props) => !props.readOnly && colorStyle[props.isActive ? 'active' : 'default']}
+  ${(props) => props.onClick && !props.readOnly && colorStyle[props.isActive ? 'active' : 'default']}
 `
 
 const StyledDiv = styled.div`
@@ -121,7 +121,7 @@ const StyledClose = styled.button<Props>`
   margin-left: -0.4rem;
   margin-right: 0.4rem;
   cursor: pointer;
-  padding: 0.2rem 0.2rem 0;
+  padding: 0.3rem 0.2rem 0;
   border-radius: 0.4rem;
   border: 0;
 
