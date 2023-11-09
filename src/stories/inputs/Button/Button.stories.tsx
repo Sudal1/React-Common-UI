@@ -219,6 +219,9 @@ export const DisabledButton: Story = {
         <Button {...args} variant="negative" disabled>
           negative
         </Button>
+        <Button {...args} variant="warning" disabled>
+          negative
+        </Button>
       </>
     )
   },
@@ -231,6 +234,7 @@ export const DisabledButton: Story = {
         <Button variant="tertiary" disabled>Tertiary</Button>
         <Button variant="positive" disabled>positive</Button>
         <Button variant="negative" disabled>negative</Button>
+        <Button variant="negative" disabled>warning</Button>
         `,
         format: 'dedent',
       },

@@ -47,7 +47,7 @@ const Template: Story = {
   },
   args: {
     visible: false,
-    position: 'top',
+    position: 'top-start',
     buttonChildren: 'Click me!',
     children: [
       { key: 1, icon: <Home />, children: 'First item!' },
