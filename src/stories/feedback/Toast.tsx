@@ -31,7 +31,7 @@ const Toast = ({
     <StyledToast variant={variant} isVisible={isVisible} closeable={closeable} hasOnclick={hasOnclick}>
       {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
       <StyledMessage>{children}</StyledMessage>
-      {onClick && <Button onClick={onClick} variant={variant} size="sm" />}
+      {hasOnclick && <Button onClick={onClick} variant={variant} size="sm" />}
       {closeable && (
         <Button onClick={onClose} variant={variant} size="xs">
           <Close />
