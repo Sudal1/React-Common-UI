@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
-import Checkbox from './Checkbox'
+import Checkbox from '../Checkbox/Checkbox'
 import CheckboxGroup from './CheckboxGroup'
 
 const meta = {

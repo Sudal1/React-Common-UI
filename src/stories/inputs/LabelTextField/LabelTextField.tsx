@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
-import TextField, { type Props as TextFieldProps } from './TextField'
+import TextField, { type Props as TextFieldProps } from '../TextField/TextField'
 
 interface Props extends TextFieldProps {
   label: string

@@ -1,61 +1,24 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
-import { colors } from 'lib/colors'
-import Button from 'stories/inputs/Button'
 import { css } from '@emotion/react'
 import { useClickOutside } from 'hooks/useClickOutside'
-
-type Position = 'top-start' | 'top' | 'top-end' | 'bottom-start' | 'bottom' | 'bottom-end'
-
-interface PopperProps {
-  position: Position
-  children: React.ReactNode
-  buttonTop: number
-  buttonLeft: number
-  buttonWidth: number
-  buttonHeight: number
-}
+import { POPPER_POSITION_VALUES } from '../Popper/Popper.constants'
+import Popper from '../Popper/Popper'
+import Button from 'stories/inputs/Button/Button'
 
 interface PopperMenuProps {
-  position: Position
+  position: POPPER_POSITION_VALUES
   visible: boolean
   buttonChildren: React.ReactNode
   children: React.ReactNode
   onClick(): void
 }
 
-const Popper = forwardRef<HTMLDivElement, PopperProps>(
-  ({ position, children, ...rest }: PopperProps, ref: any) => {
-    const POPPER_WIDTH = 200
-    const { buttonTop, buttonLeft, buttonWidth, buttonHeight } = rest
-
-    let horizonPos = buttonLeft
-    const verticalPos = buttonHeight + buttonTop
-
-    if (['top', 'bottom'].includes(position)) {
-      horizonPos = horizonPos + buttonWidth / 2 - POPPER_WIDTH / 2 // center
-    }
-
-    return (
-      <Positioner
-        ref={ref}
-        width={POPPER_WIDTH}
-        position={position}
-        horizonPos={horizonPos}
-        verticalPos={verticalPos}
-      >
-        {children}
-      </Positioner>
-    )
-  }
-)
-
-Popper.displayName = 'Popper'
-
 const PopperMenu = ({ visible, position, buttonChildren, children, onClick }: PopperMenuProps) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const popperRef = useRef<HTMLDivElement | null>(null)
-  useClickOutside([popperRef, buttonRef], onClick, [visible])
+
+  // useClickOutside([popperRef, buttonRef], onClick, [visible])
 
   const [offsetTop, setOffsetTop] = useState(0)
   const [offsetLeft, setOffsetLeft] = useState(0)
@@ -115,42 +78,6 @@ const Relative = styled.div<{ width: number; height: number }>`
   position: relative;
   height: ${({ height }) => height}px;
   overflow: visible;
-`
-
-const Positioner = styled.div<{
-  position: Position
-  width: number
-  verticalPos: number
-  horizonPos: number
-}>`
-  position: absolute;
-  width: ${({ width }) => width}px;
-
-  ${({ position, verticalPos }) =>
-    position.startsWith('top')
-      ? css`
-          bottom: ${verticalPos}px;
-          margin-bottom: 1.6rem;
-        `
-      : css`
-          top: ${verticalPos}px;
-          margin-top: 1.6rem;
-        `}
-
-  ${({ position, horizonPos }) =>
-    position.endsWith('end')
-      ? css`
-          right: 0;
-        `
-      : css`
-          left: ${horizonPos}px;
-        `}
-  background: #fff;
-  box-shadow:
-    rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-    rgba(14, 30, 37, 0.24) 0px 2px 16px 0px;
-  border-radius: 0.4rem;
-  z-index: 10;
 `
 
 export default PopperMenu

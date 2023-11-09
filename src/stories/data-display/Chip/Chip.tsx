@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
-import { Close } from '../../lib/icons'
+import { Close } from '../../../lib/icons'
 
 interface Props {
   size?: 'sm' | 'md'

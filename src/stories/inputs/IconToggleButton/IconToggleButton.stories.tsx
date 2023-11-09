@@ -15,7 +15,7 @@ import {
   OutlineFrown,
   FillBookmark,
   OutlineBookmark,
-} from '../../lib/icons'
+} from '../../../lib/icons'
 
 const activeIcons = {
   FillHeart: <FillHeart />,

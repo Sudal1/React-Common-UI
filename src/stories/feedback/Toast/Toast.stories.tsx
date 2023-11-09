@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Toast from './Toast'
-import { Warning, Error, Info, Done, Help } from '../../lib/icons'
+import { Warning, Error, Info, Done, Help } from '../../../lib/icons'
 
 const Icons = {
   Warning: <Warning />,

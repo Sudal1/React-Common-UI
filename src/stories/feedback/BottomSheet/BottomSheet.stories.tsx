@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
 import { RecoilRoot } from 'recoil'
 import { useBottomSheetActions } from 'states/bottomSheet'
-import Button from 'stories/inputs/Button'
+import Button from 'stories/inputs/Button/Button'
 import BottomSheet from './BottomSheet'
 
 interface BottomSheetItem {

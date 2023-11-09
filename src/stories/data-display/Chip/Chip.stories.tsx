@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Chip from './Chip'
 import { useArgs } from '@storybook/preview-api'
-import { Home, Add, Search, Setting } from '../../lib/icons'
+import { Home, Add, Search, Setting } from '../../../lib/icons'
 
 const Icons = {
   Home: <Home />,

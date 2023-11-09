@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
 import { RecoilRoot } from 'recoil'
 import { useDialogActions } from 'states/dialog'
-import Button from 'stories/inputs/Button'
+import Button from 'stories/inputs/Button/Button'
 import Dialog from './Dialog'
 
 const meta = {
@@ -55,12 +55,7 @@ const Template: Story = {
     return (
       <>
         <Button onClick={handleOpen}>Click !</Button>
-        <Dialog
-          visible={visible}
-          onClose={handleClose}
-          onConfirm={dummyConfig.onConfirm}
-          {...rest}
-        />
+        <Dialog visible={visible} onClose={handleClose} onConfirm={dummyConfig.onConfirm} {...rest} />
       </>
     )
   },

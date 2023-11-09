@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import MenuItem from './MenuItem'
-import { Home, Add, Search, Setting } from '../../lib/icons'
+import { Home, Add, Search, Setting } from '../../../lib/icons'
 
 const Icons = {
   Home: <Home />,
@@ -75,7 +75,7 @@ export const DefulatMenuItem: Story = {
   },
 }
 
-export const iconWithMenuItem: Story = {
+export const IconWithMenuItem: Story = {
   render: (args) => {
     return (
       <MenuItem {...args} icon={<Home />}>
@@ -94,7 +94,7 @@ export const iconWithMenuItem: Story = {
   },
 }
 
-export const disabledMenuItem: Story = {
+export const DisabledMenuItem: Story = {
   render: (args) => {
     return (
       <MenuItem {...args} disabled>

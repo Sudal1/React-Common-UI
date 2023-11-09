@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useArgs } from '@storybook/preview-api'
 import PopperMenu from './PopperMenu'
-import MenuItem from 'stories/navigation/MenuItem'
-import { Home, Add, Search } from '../../lib/icons'
+import MenuItem from 'stories/navigation/MenuItem/MenuItem'
+import { Home, Add, Search } from '../../../lib/icons'
 
 const meta = {
   title: 'Feedback/PopperMenu',

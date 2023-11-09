@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Button from './Button'
-import { Home, Add, Search, Setting } from '../../lib/icons'
+import { Home, Add, Search, Setting } from '../../../lib/icons'
 
 const Icons = {
   Home: <Home />,

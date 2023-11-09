@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
 import { media } from 'lib/media'
 import { hover } from 'lib/styles'
-import Overlay from '../layout/Overlay'
+import Overlay from '../../layout/Overlay'
 
 interface Item {
   name: string

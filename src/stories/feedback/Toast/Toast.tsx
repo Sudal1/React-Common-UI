@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { colors } from 'lib/colors'
-import Button from '../inputs/Button'
-import { Close } from '../../lib/icons'
+import { Close } from '../../../lib/icons'
+import Button from 'stories/inputs/Button/Button'
 
 type variantType = 'primary' | 'positive' | 'negative' | 'warning'
 

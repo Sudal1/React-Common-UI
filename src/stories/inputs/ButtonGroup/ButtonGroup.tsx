@@ -11,11 +11,11 @@ interface Props {
   children: React.ReactNode
 }
 
-const CheckboxGroup = ({ variant = 'primary', size = 'md', children }: Props) => {
+const ButtonGroup = ({ variant = 'primary', size = 'md', children }: Props) => {
   return (
-    <ButtonGroup variant={variant} size={size}>
+    <Container variant={variant} size={size}>
       {children}
-    </ButtonGroup>
+    </Container>
   )
 }
 
@@ -103,8 +103,8 @@ const commonStyle = (props: Props) => css`
   ${variantStyle[props.variant!]}
 `
 
-const ButtonGroup = styled.div<Props>`
+const Container = styled.div<Props>`
   ${(props) => commonStyle(props)}
 `
 
-export default CheckboxGroup
+export default ButtonGroup

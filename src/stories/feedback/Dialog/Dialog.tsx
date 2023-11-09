@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { colors } from 'lib/colors'
-import Modal from '../layout/Modal'
-import Button from 'stories/inputs/Button'
+import Modal from '../../layout/Modal'
+import Button from 'stories/inputs/Button/Button'
 
 interface Props {
   visible: boolean
