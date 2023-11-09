@@ -71,7 +71,7 @@ const StyledToast = styled.div<Props>`
 
   & > button {
     margin-left: 2.4rem;
-    margin-right: -1rem;
+    margin-right: ${(props) => (props.closeable ? '-1rem' : '0')};
   }
 
   ${(props) =>
