@@ -4,8 +4,8 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import { colors } from 'lib/colors'
 
-type variantType = 'primary' | 'secondary' | 'tertiary' | 'positive' | 'negative'
-type sizeType = 'sm' | 'md' | 'lg'
+type variantType = 'primary' | 'secondary' | 'tertiary' | 'positive' | 'negative' | 'warning'
+type sizeType = 'xs' | 'sm' | 'md' | 'lg'
 
 type MergedHTMLAttributes = Omit<
   React.HTMLAttributes<HTMLElement> &
@@ -65,15 +65,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
 
     if (to) {
       return (
-        <LinkButton
-          variant={variant}
-          size={size}
-          wide={wide}
-          disabled={disabled}
-          to={to}
-          ref={ref}
-          {...rest}
-        >
+        <LinkButton variant={variant} size={size} wide={wide} disabled={disabled} to={to} ref={ref} {...rest}>
           {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
           {children}
           {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
@@ -82,14 +74,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
     }
 
     return (
-      <DefaultButton
-        variant={variant}
-        size={size}
-        wide={wide}
-        disabled={disabled}
-        ref={ref}
-        {...rest}
-      >
+      <DefaultButton variant={variant} size={size} wide={wide} disabled={disabled} ref={ref} {...rest}>
         {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
         {children}
         {rightIcon && <RightIcon>{rightIcon}</RightIcon>}
@@ -169,9 +154,31 @@ const variantStyle = {
       background-color: ${colors.negativeActive};
     }
   `,
+
+  warning: css`
+    background-color: ${colors.warning};
+    color: #fff;
+
+    &:hover {
+      background-color: ${colors.warningHover};
+    }
+
+    &:active {
+      background-color: ${colors.warningActive};
+    }
+  `,
 }
 
 const sizeStyle = {
+  xs: css`
+    font-size: 1.1rem;
+    padding: 0 0.6rem;
+    height: 2.4rem;
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  `,
   sm: css`
     font-size: 1.2rem;
     padding: 0 0.8rem;

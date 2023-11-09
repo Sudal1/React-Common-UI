@@ -20,13 +20,13 @@ const meta = {
       control: 'text',
     },
     variant: {
-      options: ['primary', 'secondary', 'tertiary', 'positive', 'negative'],
+      options: ['primary', 'secondary', 'tertiary', 'positive', 'negative', 'warning'],
       control: {
         type: 'radio',
       },
     },
     size: {
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       control: {
         type: 'radio',
       },
@@ -114,6 +114,9 @@ export const Variant: Story = {
         <Button {...args} variant="negative">
           Negative
         </Button>
+        <Button {...args} variant="warning">
+          Warning
+        </Button>
       </>
     )
   },
@@ -126,6 +129,7 @@ export const Variant: Story = {
         <Button variant="tertiary">Tertiary</Button>
         <Button variant="positive">Positive</Button>
         <Button variant="negative">Negative</Button>
+        <Button variant="warning">Warning</Button>
         `,
         format: 'dedent',
       },
@@ -138,6 +142,9 @@ export const Size: Story = {
   render: (args) => {
     return (
       <>
+        <Button {...args} size="xs">
+          Xsmall Button
+        </Button>
         <Button {...args} size="sm">
           Small Button
         </Button>
@@ -154,6 +161,7 @@ export const Size: Story = {
     docs: {
       source: {
         code: `
+        <Button size="xs" />
         <Button size="sm" />
         <Button size="md" />   // default size 'md'
         <Button size="lg" />

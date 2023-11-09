@@ -14,16 +14,16 @@ interface Props {
 const Avatar = ({ size = 'md', text, src, disabled = false }: Props) => {
   if (src) {
     return (
-      <Container size={size} disabled={disabled}>
+      <StyledAvatar size={size} disabled={disabled}>
         <StyledImage src={src} />
-      </Container>
+      </StyledAvatar>
     )
   }
 
   return (
-    <Container size={size} disabled={disabled}>
+    <StyledAvatar size={size} disabled={disabled}>
       {text && <StyledText>{findFirstAlphabet(text)}</StyledText>}
-    </Container>
+    </StyledAvatar>
   )
 }
 
@@ -51,7 +51,7 @@ const sizeStyle = {
   `,
 }
 
-const Container = styled.div<Props>`
+const StyledAvatar = styled.div<Props>`
   display: flex;
   border-radius: 50%;
   background: ${colors.primaryLight};
